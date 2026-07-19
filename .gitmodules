@@ -4,3 +4,9 @@
 [submodule "Databases/rpq-matrix_GB"]
 	path = Databases/rpq-matrix_GB
 	url = https://github.com/suvorovrain/rpq-matrix.git
+[submodule "vendor/LAGraph"]
+	path = vendor/LAGraph
+	url = https://github.com/SparseLinearAlgebra/LAGraph.git
+[submodule "vendor/GraphBLAS"]
+	path = vendor/GraphBLAS
+	url = https://github.com/SparseLinearAlgebra/GraphBLAS.git
