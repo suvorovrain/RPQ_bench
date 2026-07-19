@@ -10,3 +10,6 @@
 [submodule "vendor/GraphBLAS"]
 	path = vendor/GraphBLAS
 	url = https://github.com/SparseLinearAlgebra/GraphBLAS.git
+[submodule "Databases/pathrex"]
+	path = Databases/pathrex
+	url = https://github.com/SparseLinearAlgebra/pathrex.git
