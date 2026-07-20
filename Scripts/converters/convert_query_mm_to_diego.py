@@ -18,7 +18,7 @@ def denormalize_endpoint(token: str, *, is_subject: bool) -> str:
 
 
 def output_path_for(input_path: Path, output_dir: Path) -> Path:
-    return output_dir / f"{input_path.stem}_mm.tsv"
+    return output_dir / f"{input_path.stem}.tsv"
 
 
 def iter_input_paths(patterns: Iterable[str]) -> list[Path]:
@@ -84,7 +84,7 @@ def parse_args() -> argparse.Namespace:
         "-o",
         "--output-dir",
         type=Path,
-        help="Directory where '*_mm.tsv' files will be written.",
+        help="Directory where '*.tsv' files will be written.",
     )
     return parser.parse_args()
 
