@@ -2,7 +2,7 @@
 set -euo pipefail
 
 usage() {
-    echo "Usage: $0 <semantic: 0 any-any | 1 any-con | 2 con-any> [dataset_base]" >&2
+    echo "Usage: $0 <semantic: 0 any-any | 1 any-con | 2 con-any>" >&2
 }
 
 case "${1:-}" in
@@ -15,19 +15,8 @@ esac
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 BENCH_ROOT="$(CDPATH= cd -- "$SCRIPT_DIR/../.." && pwd)"
 
-resolve_path() {
-    local path="$1"
-    if [[ "$path" = /* ]]; then
-        printf '%s\n' "$path"
-    elif [[ -e "$path" || -L "$path" ]]; then
-        (CDPATH= cd -- "$(dirname -- "$path")" && printf '%s/%s\n' "$PWD" "$(basename -- "$path")")
-    else
-        printf '%s/%s\n' "$BENCH_ROOT" "$path"
-    fi
-}
-
 BIN="$BENCH_ROOT/Databases/rpq-matrix_GB/build/baselineGB_query"
-DATASET="$(resolve_path "${2:-Datasets/rpqbench_250k/rpq-matrix_GB/rpqbench_250k_orig.nt.dat}")"
+DATASET="$BENCH_ROOT/Datasets/rpqbench_250k/rpq-matrix_GB/rpqbench_250k_orig.nt.dat"
 QUERY_DIR="$BENCH_ROOT/Queries/rpqmatrix_gb/rpqbench_250k/$SEMANTIC/queries_mm_split"
 OUT_DIR="$BENCH_ROOT/Results/rpqbench_250k/rpq-matrix_GB/$SEMANTIC"
 N_PREDS=9

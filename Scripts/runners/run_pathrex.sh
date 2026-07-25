@@ -2,7 +2,7 @@
 set -euo pipefail
 
 usage() {
-    echo "Usage: $0 <semantic: 0 any-any | 1 any-con | 2 con-any> [dataset_dir]" >&2
+    echo "Usage: $0 <semantic: 0 any-any | 1 any-con | 2 con-any>" >&2
 }
 
 case "${1:-}" in
@@ -15,18 +15,7 @@ esac
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 BENCH_ROOT="$(CDPATH= cd -- "$SCRIPT_DIR/../.." && pwd)"
 
-resolve_path() {
-    local path="$1"
-    if [[ "$path" = /* ]]; then
-        printf '%s\n' "$path"
-    elif [[ -e "$path" || -L "$path" ]]; then
-        (CDPATH= cd -- "$(dirname -- "$path")" && printf '%s/%s\n' "$PWD" "$(basename -- "$path")")
-    else
-        printf '%s/%s\n' "$BENCH_ROOT" "$path"
-    fi
-}
-
-GRAPH="$(resolve_path "${2:-Datasets/rpqbench_250k/pathrex}")"
+GRAPH="$BENCH_ROOT/Datasets/rpqbench_250k/pathrex"
 QUERIES="$BENCH_ROOT/Queries/pathrex/rpqbench_250k/$SEMANTIC/queries.txt"
 OUT_DIR="$BENCH_ROOT/Results/rpqbench_250k/pathrex-test/$SEMANTIC"
 OUT_FILE="$OUT_DIR/res.json"
@@ -43,11 +32,13 @@ cargo run --release \
     -p pathrex \
     --features bench \
     --bin pathrex \
-    -- query \
+    -- bench \
     --graph "$GRAPH" \
     --format mm \
     --queries "$QUERIES" \
     --base-iri=http://example.org/ \
     --algo rpqmatrix \
-    --rpqmatrix-optimizer cardinality \
-    --output "$OUT_FILE"
+    --rpqmatrix-optimizer none \
+    --output "$OUT_FILE" \
+    --runs 100 \
+    --warm-up-runs 5 \

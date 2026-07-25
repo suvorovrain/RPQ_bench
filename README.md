@@ -6,7 +6,7 @@
 - output: RPQ_bench/Results/rpqbench_250k/pathrex-test
 - runner:
 ```
-./Scripts/runners/run_pathrex.sh <0 any-any | 1 any-con | 2 con-any> [dataset_dir]
+./Scripts/runners/run_pathrex.sh <0 any-any | 1 any-con | 2 con-any>
 ```
 - run command:
 `any-any`
@@ -27,7 +27,7 @@ cargo run --release -p pathrex --manifest-path ./Databases/pathrex/Cargo.toml --
 - output: RPQ_bench/Results/rpqbench_250k/rpq-matrix
 - runner:
 ```
-./Scripts/runners/run_rpqmatrix.sh <0 any-any | 1 any-con | 2 con-any> [dataset_base]
+./Scripts/runners/run_rpqmatrix.sh <0 any-any | 1 any-con | 2 con-any>
 ```
 - run command:
 `any-any`
@@ -52,7 +52,7 @@ cargo run --release -p pathrex --manifest-path ./Databases/pathrex/Cargo.toml --
 ```
 - runner:
 ```
-./Scripts/runners/run_rpqmatrix_gb.sh <0 any-any | 1 any-con | 2 con-any> [dataset_base]
+./Scripts/runners/run_rpqmatrix_gb.sh <0 any-any | 1 any-con | 2 con-any>
 ```
 - run command:
 
