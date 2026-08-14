@@ -38,7 +38,7 @@ cargo run --release \
     --queries "$QUERIES" \
     --base-iri=http://example.org/ \
     --algo rpqmatrix \
-    --rpqmatrix-optimizer none \
+    --rpqmatrix-optimizer cardinality \
     --output "$OUT_FILE" \
     --runs 100 \
     --warm-up-runs 5 \
