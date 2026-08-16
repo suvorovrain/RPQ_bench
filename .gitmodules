@@ -13,3 +13,6 @@
 [submodule "Databases/pathrex"]
 	path = Databases/pathrex
 	url = https://github.com/SparseLinearAlgebra/pathrex.git
+[submodule "vendor/larpq"]
+	path = vendor/larpq
+	url = https://github.com/SparseLinearAlgebra/la-rpq.git
