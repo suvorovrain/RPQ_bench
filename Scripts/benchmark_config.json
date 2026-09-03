@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "defaults": {
+    "dataset": "rpqbench",
+    "runs": 10,
+    "warmup_runs": 2
+  },
+  "semantics": {
+    "any-any": ["0"],
+    "any-con": ["1"],
+    "con-any": ["2"]
+  },
+  "variables": {
+    "base_iri": "http://example.org/",
+    "old_pathrex_root": "{root}/../pathrex",
+    "old_pathrex_binary": "{old_pathrex_root}/target/release/pathrex",
+    "pathrex_binary": "{root}/Databases/pathrex/target/release/pathrex",
+    "rpqmatrix_binary": "{root}/Databases/rpq-matrix/build/baseline_query",
+    "rpqmatrix_gb_binary": "{root}/Databases/rpq-matrix_GB/build/baselineGB_query"
+  },
+  "datasets": {
+    "rpqbench": {
+      "description": "Full RPQBench dataset used on the benchmark server",
+      "n_predicates": 9,
+      "n_triples": 150144666,
+      "competitors": ["pathrex-old", "pathrex-opt", "rpqmatrix", "rpqmatrix-gb"],
+      "variables": {
+        "query_catalog": "{root}/Queries/rpqmatrix/{semantic}/{query_set}.tsv",
+        "pathrex_query": "{root}/Queries/pathrex/{semantic}/{query_set}.txt",
+        "rpqmatrix_query_dir": "{root}/Queries/rpqmatrix/{semantic}/{query_set}.tsv_split",
+        "rpqmatrix_gb_query_dir": "{root}/Queries/rpqmatrix_gb/{semantic}/{query_set}.tsv_split",
+        "pathrex_graph": "{root}/Datasets/{dataset}/pathrex",
+        "rpqmatrix_dataset": "{root}/Datasets/{dataset}/rpq-matrix/rpqbench/rpqbench.dat",
+        "rpqmatrix_gb_dataset": "{root}/Datasets/{dataset}/rpq-matrix_GB/rpqbench.nt.dat",
+        "results_root": "{root}/Results/{dataset}",
+        "pathrex_old_result": "{results_root}/pathrex/{semantic}/{query_set}/res.json",
+        "pathrex_old_checkpoint": "{results_root}/pathrex/{semantic}/{query_set}/checkpoint.json",
+        "pathrex_opt_result": "{results_root}/pathrex-test/{semantic}/{query_set}/res.json",
+        "pathrex_opt_checkpoint": "{results_root}/pathrex-test/{semantic}/{query_set}/checkpoint.json",
+        "rpqmatrix_result_dir": "{results_root}/rpq-matrix/{semantic}/{query_set}",
+        "rpqmatrix_gb_result_dir": "{results_root}/rpq-matrix_GB/{semantic}/{query_set}",
+        "analysis_output": "{root}/Scripts/benchmarks/benchmark_results/{dataset}"
+      }
+    },
+    "rpqbench_250k": {
+      "description": "Small RPQBench dataset kept in the repository",
+      "n_predicates": 9,
+      "n_triples": 63052,
+      "competitors": ["pathrex-old", "pathrex-opt", "rpqmatrix", "rpqmatrix-gb"],
+      "variables": {
+        "query_catalog": "{root}/Queries/rpqmatrix/{dataset}/{semantic}/{query_set}.tsv",
+        "pathrex_query": "{root}/Queries/pathrex/{dataset}/{semantic}/queries.txt",
+        "rpqmatrix_query_dir": "{root}/Queries/rpqmatrix/{dataset}/{semantic}/{query_set}_split",
+        "rpqmatrix_gb_query_dir": "{root}/Queries/rpqmatrix_gb/{dataset}/{semantic}/{query_set}_split",
+        "pathrex_graph": "{root}/Datasets/{dataset}/pathrex",
+        "rpqmatrix_dataset": "{root}/Datasets/{dataset}/rpq-matrix/rpqbench_250k_orig.nt.dat",
+        "rpqmatrix_gb_dataset": "{root}/Datasets/{dataset}/rpq-matrix_GB/rpqbench_250k_orig.nt.dat",
+        "results_root": "{root}/Results/{dataset}",
+        "pathrex_old_result": "{results_root}/pathrex/{semantic}/res.json",
+        "pathrex_old_checkpoint": "{results_root}/pathrex/{semantic}/checkpoint.json",
+        "pathrex_opt_result": "{results_root}/pathrex-test/{semantic}/res.json",
+        "pathrex_opt_checkpoint": "{results_root}/pathrex-test/{semantic}/checkpoint.json",
+        "rpqmatrix_result_dir": "{results_root}/rpq-matrix/{semantic}",
+        "rpqmatrix_gb_result_dir": "{results_root}/rpq-matrix_GB/{semantic}",
+        "analysis_output": "{root}/Scripts/benchmarks/benchmark_results/{dataset}"
+      }
+    }
+  },
+  "competitors": {
+    "pathrex-old": {
+      "label": "pathrex_old",
+      "run": {
+        "binary": "{old_pathrex_binary}",
+        "query_path": "{pathrex_query}",
+        "output_path": "{pathrex_old_result}",
+        "required_paths": ["{pathrex_graph}"],
+        "build_hint": "Build old Pathrex with: cd {old_pathrex_root} && cargo build --release -p pathrex --features bench --bin pathrex",
+        "command": [
+          "{binary}", "bench", "--graph", "{pathrex_graph}", "--format", "mm",
+          "--queries", "{query_path}", "--base-iri={base_iri}", "--algo", "rpqmatrix",
+          "--rpqmatrix-optimizer", "cardinality", "--output", "{output_path}",
+          "--checkpoint", "{pathrex_old_checkpoint}", "--runs", "{runs}",
+          "--warm-up-runs", "{warmup_runs}"
+        ]
+      },
+      "analysis": {
+        "reader": "json_timing",
+        "path": "{pathrex_old_result}",
+        "algorithm": "rpqmatrix",
+        "table_metric": "total",
+        "metrics": {
+          "ffi": {"label": "pathrex_old ffi", "field": "ffi_only", "color": "#6baed6", "histogram": true},
+          "total": {"label": "pathrex_old total", "field": "total", "color": "#2171b5", "histogram": true}
+        }
+      }
+    },
+    "pathrex-opt": {
+      "label": "pathrex_opt",
+      "run": {
+        "binary": "{pathrex_binary}",
+        "query_path": "{pathrex_query}",
+        "output_path": "{pathrex_opt_result}",
+        "required_paths": ["{pathrex_graph}"],
+        "build_hint": "Build Pathrex with: cargo build --release --manifest-path {root}/Databases/pathrex/Cargo.toml -p pathrex --features bench --bin pathrex",
+        "command": [
+          "{binary}", "bench", "--graph", "{pathrex_graph}", "--format", "mm",
+          "--queries", "{query_path}", "--base-iri={base_iri}", "--algo", "rpqmatrix",
+          "--rpqmatrix-optimizer", "cardinality", "--output", "{output_path}",
+          "--checkpoint", "{pathrex_opt_checkpoint}", "--runs", "{runs}",
+          "--warm-up-runs", "{warmup_runs}"
+        ]
+      },
+      "analysis": {
+        "reader": "json_timing",
+        "path": "{pathrex_opt_result}",
+        "algorithm": "rpqmatrix",
+        "table_metric": "total",
+        "metrics": {
+          "ffi": {"label": "pathrex_opt ffi", "field": "ffi_only", "color": "#fdae6b", "histogram": true},
+          "total": {"label": "pathrex_opt total", "field": "total", "color": "#e6550d", "histogram": true}
+        }
+      }
+    },
+    "rpqmatrix": {
+      "label": "rpqmatrix",
+      "run": {
+        "binary": "{rpqmatrix_binary}",
+        "query_path": "{rpqmatrix_query_dir}",
+        "query_files_glob": "*.txt",
+        "query_file_repetitions": "{total_runs}",
+        "output_path": "{rpqmatrix_result_dir}/{query_name}",
+        "required_paths": [
+          "{rpqmatrix_dataset}", "{rpqmatrix_dataset}.SO", "{rpqmatrix_dataset}.P",
+          "{rpqmatrix_dataset}.baseline-64/0001.mat"
+        ],
+        "build_hint": "Build rpq-matrix with: cmake --build {root}/Databases/rpq-matrix/build --config Release",
+        "command": ["{binary}", "{rpqmatrix_dataset}", "{query_path}", "{n_predicates}", "{n_triples}"],
+        "stdout_include_regex": "^[0-9]+;"
+      },
+      "analysis": {
+        "reader": "semicolon_files",
+        "path": "{rpqmatrix_result_dir}/{query_index}.txt",
+        "delimiter": ";",
+        "value_column": 2,
+        "warmup_runs": "{warmup_runs}",
+        "runs": "{runs}",
+        "table_metric": "total",
+        "metrics": {
+          "total": {"label": "rpqmatrix", "color": "#74c476", "histogram": true}
+        }
+      }
+    },
+    "rpqmatrix-gb": {
+      "label": "rpqmatrix_GB",
+      "run": {
+        "binary": "{rpqmatrix_gb_binary}",
+        "query_path": "{rpqmatrix_gb_query_dir}",
+        "query_files_glob": "*.txt",
+        "query_file_repetitions": "{total_runs}",
+        "output_path": "{rpqmatrix_gb_result_dir}/{query_name}",
+        "required_paths": [
+          "{rpqmatrix_gb_dataset}", "{rpqmatrix_gb_dataset}.SO", "{rpqmatrix_gb_dataset}.P",
+          "{rpqmatrix_gb_dataset}.baseline-64/0001.mat"
+        ],
+        "build_hint": "Build rpq-matrix_GB with: cmake --build {root}/Databases/rpq-matrix_GB/build --config Release",
+        "command": ["{binary}", "{rpqmatrix_gb_dataset}", "{query_path}", "{n_predicates}", "{n_triples}"],
+        "stdout_include_regex": "^[0-9]+;"
+      },
+      "analysis": {
+        "reader": "semicolon_files",
+        "path": "{rpqmatrix_gb_result_dir}/{query_index}.txt",
+        "delimiter": ";",
+        "value_column": 2,
+        "warmup_runs": "{warmup_runs}",
+        "runs": "{runs}",
+        "table_metric": "total",
+        "metrics": {
+          "total": {"label": "rpqmatrix_GB", "color": "#815394", "histogram": true}
+        }
+      }
+    }
+  }
+}

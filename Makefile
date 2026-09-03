@@ -18,18 +18,20 @@ graphblas: $(BUILD)
 	      -G Ninja -S $(GRAPH_BLAS_PATH) -B $(BUILD)
 	cmake --build $(BUILD) --parallel $(JOBS)
 
-lagraph: build $(LAGRAPH_BUILD)
+lagraph: $(LAGRAPH_BUILD)
 	cmake -DGraphBLAS_DIR=$(BUILD) \
 	      -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
 	      -DCMAKE_BUILD_TYPE=Release -G Ninja -S $(LAGRAPH_PATH) -B $(LAGRAPH_BUILD)
 	cmake --build $(LAGRAPH_BUILD) --parallel $(JOBS)
 
 rpq-matrix: $(RPQ_MATRIX_BUILD)
-	cmake -S $(RPQ_MATRIX_PATH) -B $(RPQ_MATRIX_BUILD)
+	cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+	      -S $(RPQ_MATRIX_PATH) -B $(RPQ_MATRIX_BUILD)
 	$(MAKE) -C $(RPQ_MATRIX_BUILD) -j 20
 
 rpq-matrix_GB: $(RPQ_MATRIX_GB_BUILD)
-	cmake -S $(RPQ_MATRIX_GB_PATH) -B $(RPQ_MATRIX_GB_BUILD)
+	cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+	      -S $(RPQ_MATRIX_GB_PATH) -B $(RPQ_MATRIX_GB_BUILD)
 	$(MAKE) -C $(RPQ_MATRIX_GB_BUILD) -j 20
 
 rpqmatrix: rpq-matrix
