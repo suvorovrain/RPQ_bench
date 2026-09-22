@@ -9,6 +9,7 @@
     "wikidata": ["0"]
   },
   "variables": {
+    "base_iri": "http://example.org/",
     "pathrex_binary": "{root}/Databases/pathrex/target/release/pathrex"
   },
   "datasets": {
@@ -50,7 +51,7 @@
         "build_hint": "Build Pathrex with: cargo build --release --manifest-path {root}/Databases/pathrex/Cargo.toml -p pathrex --features bench --bin pathrex",
         "command": [
           "{binary}", "bench", "--graph", "{pathrex_graph}", "--format", "mm",
-          "--queries", "{query_path}", "--algo", "rpqmatrix",
+          "--queries", "{query_path}", "--base-iri={base_iri}", "--algo", "rpqmatrix",
           "--rpqmatrix-optimizer", "cardinality", "--output", "{output_path}",
           "--runs", "{runs}", "--warm-up-runs", "{warmup_runs}"
         ]
@@ -75,7 +76,7 @@
         "build_hint": "Build Pathrex with: cargo build --release --manifest-path {root}/Databases/pathrex/Cargo.toml -p pathrex --features bench --bin pathrex",
         "command": [
           "{binary}", "bench", "--graph", "{pathrex_graph}", "--format", "mm",
-          "--queries", "{query_path}", "--algo", "rpqmatrix",
+          "--queries", "{query_path}", "--base-iri={base_iri}", "--algo", "rpqmatrix",
           "--rpqmatrix-optimizer", "metaac", "--output", "{output_path}",
           "--runs", "{runs}", "--warm-up-runs", "{warmup_runs}"
         ]
@@ -100,7 +101,7 @@
         "build_hint": "Build Pathrex with: cargo build --release --manifest-path {root}/Databases/pathrex/Cargo.toml -p pathrex --features bench --bin pathrex",
         "command": [
           "{binary}", "bench", "--graph", "{pathrex_graph}", "--format", "mm",
-          "--queries", "{query_path}", "--algo", "rpqmatrix",
+          "--queries", "{query_path}", "--base-iri={base_iri}", "--algo", "rpqmatrix",
           "--rpqmatrix-optimizer", "hybrid", "--output", "{output_path}",
           "--runs", "{runs}", "--warm-up-runs", "{warmup_runs}"
         ]
@@ -125,7 +126,7 @@
         "build_hint": "Build Pathrex with: cargo build --release --manifest-path {root}/Databases/pathrex/Cargo.toml -p pathrex --features bench --bin pathrex",
         "command": [
           "{binary}", "bench", "--graph", "{pathrex_graph}", "--format", "mm",
-          "--queries", "{query_path}", "--algo", "rpqmatrix",
+          "--queries", "{query_path}", "--base-iri={base_iri}", "--algo", "rpqmatrix",
           "--rpqmatrix-optimizer", "rpq-static", "--output", "{output_path}",
           "--runs", "{runs}", "--warm-up-runs", "{warmup_runs}"
         ]
@@ -150,7 +151,7 @@
         "build_hint": "Build Pathrex with: cargo build --release --manifest-path {root}/Databases/pathrex/Cargo.toml -p pathrex --features bench --bin pathrex",
         "command": [
           "{binary}", "bench", "--graph", "{pathrex_graph}", "--format", "mm",
-          "--queries", "{query_path}", "--algo", "rpqmatrix",
+          "--queries", "{query_path}", "--base-iri={base_iri}", "--algo", "rpqmatrix",
           "--rpqmatrix-optimizer", "rpq-sampling", "--output", "{output_path}",
           "--runs", "{runs}", "--warm-up-runs", "{warmup_runs}"
         ]
@@ -175,7 +176,7 @@
         "build_hint": "Build Pathrex with: cargo build --release --manifest-path {root}/Databases/pathrex/Cargo.toml -p pathrex --features bench --bin pathrex",
         "command": [
           "{binary}", "bench", "--graph", "{pathrex_graph}", "--format", "mm",
-          "--queries", "{query_path}", "--algo", "rpqmatrix",
+          "--queries", "{query_path}", "--base-iri={base_iri}", "--algo", "rpqmatrix",
           "--rpqmatrix-optimizer", "row-sampling", "--output", "{output_path}",
           "--runs", "{runs}", "--warm-up-runs", "{warmup_runs}"
         ]
