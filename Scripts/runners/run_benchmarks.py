@@ -94,14 +94,25 @@ def query_sets_for(
         context["query_catalog"], {**context, "semantic": semantic}, strict=False
     )
     if selector not in ("", "all"):
+        configured = context.get("query_sets")
+        if configured is not None and selector not in configured:
+            choices = ", ".join(configured)
+            raise ConfigError(f"unknown query set {selector!r}; configured values: {choices}")
         catalog = Path(format_template(catalog_template, {**context, "query_set": selector}))
         if validate_paths and not catalog.is_file():
             raise ConfigError(f"query catalog does not exist: {catalog}")
         return [selector]
 
-    query_sets = discover_query_sets(catalog_template)
+    query_sets = context.get("query_sets") or discover_query_sets(catalog_template)
     if not query_sets:
         raise ConfigError(f"no query sets match catalog template: {catalog_template}")
+    if validate_paths:
+        for query_set in query_sets:
+            catalog = Path(
+                format_template(catalog_template, {**context, "query_set": query_set})
+            )
+            if not catalog.is_file():
+                raise ConfigError(f"query catalog does not exist: {catalog}")
     return query_sets
 
 

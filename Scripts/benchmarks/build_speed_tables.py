@@ -109,8 +109,13 @@ def catalog_template(context: Mapping[str, Any], semantic: str) -> str:
 
 def selected_query_sets(context: Mapping[str, Any], semantic: str, selector: str) -> list[str]:
     if selector not in ("", "all"):
-        return [query_set_stem(selector)]
-    values = discover_query_sets(catalog_template(context, semantic))
+        value = query_set_stem(selector)
+        configured = context.get("query_sets")
+        if configured is not None and value not in configured:
+            choices = ", ".join(configured)
+            raise ConfigError(f"unknown query set {value!r}; configured values: {choices}")
+        return [value]
+    values = context.get("query_sets") or discover_query_sets(catalog_template(context, semantic))
     if not values:
         raise ConfigError(f"no query sets found for semantic {semantic!r}")
     return values

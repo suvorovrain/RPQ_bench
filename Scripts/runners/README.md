@@ -109,6 +109,10 @@ datasets       dataset metadata, enabled competitors, and path variables
 competitors    generic command templates and result-reader definitions
 ```
 
+A dataset may define `query_sets` as an explicit list. In that case,
+`--query-set all` uses exactly that allowlist instead of discovering every file
+matching `query_catalog`.
+
 Every path and command argument is a template. Built-in variables are:
 
 ```text
@@ -156,6 +160,7 @@ path variables used by those competitors:
     "description": "My new graph",
     "n_predicates": 42,
     "n_triples": 1234567,
+    "query_sets": ["1", "2", "3"],
     "competitors": ["pathrex-opt", "rpqmatrix"],
     "variables": {
       "query_catalog": "{root}/Queries/rpqmatrix/my_dataset/{semantic}/{query_set}.tsv",

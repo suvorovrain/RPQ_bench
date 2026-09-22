@@ -112,6 +112,16 @@ def build_context(
         raise ConfigError("warmup_runs must be a non-negative integer")
     context["total_runs"] = context["runs"] + context["warmup_runs"]
 
+    query_sets = dataset.get("query_sets")
+    if query_sets is not None:
+        if (
+            not isinstance(query_sets, list)
+            or not query_sets
+            or not all(isinstance(value, str) and value for value in query_sets)
+        ):
+            raise ConfigError(f"dataset {dataset_name!r} query_sets must be a non-empty string list")
+        context["query_sets"] = list(dict.fromkeys(query_sets))
+
     shared_variables = config.get("variables", {})
     variables = dataset.get("variables", {})
     if not isinstance(shared_variables, dict):
