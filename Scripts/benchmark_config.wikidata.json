@@ -24,15 +24,11 @@
         "sparql-queries_CON_ANY"
       ],
       "competitors": [
-        "cardinality",
+        "none",
+        "join",
         "metaac",
         "mnc",
-        "hybrid",
-        "hybrid-static-star",
-        "hybrid-sampled-star",
-        "rpq-static",
-        "rpq-sampling",
-        "row-sampling"
+        "hybrid"
       ],
       "variables": {
         "query_catalog": "/mnt/jblab2-disk/Georgiy/la-rpq/Experiments/Datasets/Wikidata/wikidata-{query_set}.txt",
@@ -44,28 +40,53 @@
     }
   },
   "competitors": {
-    "cardinality": {
-      "label": "cardinality",
+    "none": {
+      "label": "none",
       "run": {
         "binary": "{pathrex_binary}",
         "query_path": "{pathrex_query}",
-        "output_path": "{results_root}/{query_set}/cardinality/res.json",
+        "output_path": "{results_root}/{query_set}/none/res.json",
         "required_paths": ["{pathrex_graph}"],
         "build_hint": "Build Pathrex with: cargo build --release --manifest-path {root}/Databases/pathrex/Cargo.toml -p pathrex --features bench --bin pathrex",
         "command": [
           "{binary}", "bench", "--graph", "{pathrex_graph}", "--format", "mm",
           "--queries", "{query_path}", "--base-iri={base_iri}", "--algo", "rpqmatrix",
-          "--rpqmatrix-optimizer", "cardinality", "--output", "{output_path}",
+          "--rpqmatrix-optimizer", "none", "--output", "{output_path}",
           "--runs", "{runs}", "--warm-up-runs", "{warmup_runs}"
         ]
       },
       "analysis": {
         "reader": "json_timing",
-        "path": "{results_root}/{query_set}/cardinality/res.json",
+        "path": "{results_root}/{query_set}/none/res.json",
         "algorithm": "rpqmatrix",
         "table_metric": "total",
         "metrics": {
-          "total": {"label": "cardinality", "field": "total", "color": "#1f77b4", "histogram": true}
+          "total": {"label": "none", "field": "total", "color": "#7f7f7f", "histogram": true}
+        }
+      }
+    },
+    "join": {
+      "label": "join",
+      "run": {
+        "binary": "{pathrex_binary}",
+        "query_path": "{pathrex_query}",
+        "output_path": "{results_root}/{query_set}/join/res.json",
+        "required_paths": ["{pathrex_graph}"],
+        "build_hint": "Build Pathrex with: cargo build --release --manifest-path {root}/Databases/pathrex/Cargo.toml -p pathrex --features bench --bin pathrex",
+        "command": [
+          "{binary}", "bench", "--graph", "{pathrex_graph}", "--format", "mm",
+          "--queries", "{query_path}", "--base-iri={base_iri}", "--algo", "rpqmatrix",
+          "--rpqmatrix-optimizer", "join", "--output", "{output_path}",
+          "--runs", "{runs}", "--warm-up-runs", "{warmup_runs}"
+        ]
+      },
+      "analysis": {
+        "reader": "json_timing",
+        "path": "{results_root}/{query_set}/join/res.json",
+        "algorithm": "rpqmatrix",
+        "table_metric": "total",
+        "metrics": {
+          "total": {"label": "join", "field": "total", "color": "#1f77b4", "histogram": true}
         }
       }
     },
@@ -141,131 +162,6 @@
         "table_metric": "total",
         "metrics": {
           "total": {"label": "hybrid", "field": "total", "color": "#2ca02c", "histogram": true}
-        }
-      }
-    },
-    "hybrid-static-star": {
-      "label": "hybrid-static-star",
-      "run": {
-        "binary": "{pathrex_binary}",
-        "query_path": "{pathrex_query}",
-        "output_path": "{results_root}/{query_set}/hybrid-static-star/res.json",
-        "required_paths": ["{pathrex_graph}"],
-        "build_hint": "Build Pathrex with: cargo build --release --manifest-path {root}/Databases/pathrex/Cargo.toml -p pathrex --features bench --bin pathrex",
-        "command": [
-          "{binary}", "bench", "--graph", "{pathrex_graph}", "--format", "mm",
-          "--queries", "{query_path}", "--base-iri={base_iri}", "--algo", "rpqmatrix",
-          "--rpqmatrix-optimizer", "hybrid-static-star", "--output", "{output_path}",
-          "--runs", "{runs}", "--warm-up-runs", "{warmup_runs}"
-        ]
-      },
-      "analysis": {
-        "reader": "json_timing",
-        "path": "{results_root}/{query_set}/hybrid-static-star/res.json",
-        "algorithm": "rpqmatrix",
-        "table_metric": "total",
-        "metrics": {
-          "total": {"label": "hybrid-static-star", "field": "total", "color": "#17becf", "histogram": true}
-        }
-      }
-    },
-    "hybrid-sampled-star": {
-      "label": "hybrid-sampled-star",
-      "run": {
-        "binary": "{pathrex_binary}",
-        "query_path": "{pathrex_query}",
-        "output_path": "{results_root}/{query_set}/hybrid-sampled-star/res.json",
-        "required_paths": ["{pathrex_graph}"],
-        "build_hint": "Build Pathrex with: cargo build --release --manifest-path {root}/Databases/pathrex/Cargo.toml -p pathrex --features bench --bin pathrex",
-        "command": [
-          "{binary}", "bench", "--graph", "{pathrex_graph}", "--format", "mm",
-          "--queries", "{query_path}", "--base-iri={base_iri}", "--algo", "rpqmatrix",
-          "--rpqmatrix-optimizer", "hybrid-sampled-star", "--output", "{output_path}",
-          "--runs", "{runs}", "--warm-up-runs", "{warmup_runs}"
-        ]
-      },
-      "analysis": {
-        "reader": "json_timing",
-        "path": "{results_root}/{query_set}/hybrid-sampled-star/res.json",
-        "algorithm": "rpqmatrix",
-        "table_metric": "total",
-        "metrics": {
-          "total": {"label": "hybrid-sampled-star", "field": "total", "color": "#bcbd22", "histogram": true}
-        }
-      }
-    },
-    "rpq-static": {
-      "label": "rpq-static",
-      "run": {
-        "binary": "{pathrex_binary}",
-        "query_path": "{pathrex_query}",
-        "output_path": "{results_root}/{query_set}/rpq-static/res.json",
-        "required_paths": ["{pathrex_graph}"],
-        "build_hint": "Build Pathrex with: cargo build --release --manifest-path {root}/Databases/pathrex/Cargo.toml -p pathrex --features bench --bin pathrex",
-        "command": [
-          "{binary}", "bench", "--graph", "{pathrex_graph}", "--format", "mm",
-          "--queries", "{query_path}", "--base-iri={base_iri}", "--algo", "rpqmatrix",
-          "--rpqmatrix-optimizer", "rpq-static", "--output", "{output_path}",
-          "--runs", "{runs}", "--warm-up-runs", "{warmup_runs}"
-        ]
-      },
-      "analysis": {
-        "reader": "json_timing",
-        "path": "{results_root}/{query_set}/rpq-static/res.json",
-        "algorithm": "rpqmatrix",
-        "table_metric": "total",
-        "metrics": {
-          "total": {"label": "rpq-static", "field": "total", "color": "#d62728", "histogram": true}
-        }
-      }
-    },
-    "rpq-sampling": {
-      "label": "rpq-sampling",
-      "run": {
-        "binary": "{pathrex_binary}",
-        "query_path": "{pathrex_query}",
-        "output_path": "{results_root}/{query_set}/rpq-sampling/res.json",
-        "required_paths": ["{pathrex_graph}"],
-        "build_hint": "Build Pathrex with: cargo build --release --manifest-path {root}/Databases/pathrex/Cargo.toml -p pathrex --features bench --bin pathrex",
-        "command": [
-          "{binary}", "bench", "--graph", "{pathrex_graph}", "--format", "mm",
-          "--queries", "{query_path}", "--base-iri={base_iri}", "--algo", "rpqmatrix",
-          "--rpqmatrix-optimizer", "rpq-sampling", "--output", "{output_path}",
-          "--runs", "{runs}", "--warm-up-runs", "{warmup_runs}"
-        ]
-      },
-      "analysis": {
-        "reader": "json_timing",
-        "path": "{results_root}/{query_set}/rpq-sampling/res.json",
-        "algorithm": "rpqmatrix",
-        "table_metric": "total",
-        "metrics": {
-          "total": {"label": "rpq-sampling", "field": "total", "color": "#9467bd", "histogram": true}
-        }
-      }
-    },
-    "row-sampling": {
-      "label": "row-sampling",
-      "run": {
-        "binary": "{pathrex_binary}",
-        "query_path": "{pathrex_query}",
-        "output_path": "{results_root}/{query_set}/row-sampling/res.json",
-        "required_paths": ["{pathrex_graph}"],
-        "build_hint": "Build Pathrex with: cargo build --release --manifest-path {root}/Databases/pathrex/Cargo.toml -p pathrex --features bench --bin pathrex",
-        "command": [
-          "{binary}", "bench", "--graph", "{pathrex_graph}", "--format", "mm",
-          "--queries", "{query_path}", "--base-iri={base_iri}", "--algo", "rpqmatrix",
-          "--rpqmatrix-optimizer", "row-sampling", "--output", "{output_path}",
-          "--runs", "{runs}", "--warm-up-runs", "{warmup_runs}"
-        ]
-      },
-      "analysis": {
-        "reader": "json_timing",
-        "path": "{results_root}/{query_set}/row-sampling/res.json",
-        "algorithm": "rpqmatrix",
-        "table_metric": "total",
-        "metrics": {
-          "total": {"label": "row-sampling", "field": "total", "color": "#8c564b", "histogram": true}
         }
       }
     }
