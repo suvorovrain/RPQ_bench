@@ -193,6 +193,23 @@ def write_run_metadata(output_path: Path, metadata: Mapping[str, Any]) -> None:
             Path(temp_name).unlink(missing_ok=True)
 
 
+def validate_batch_query_ids(query_path: Path, catalog_path: Path) -> list[str]:
+    try:
+        catalog_lines = catalog_path.read_text(encoding="utf-8").splitlines()
+        converted_lines = query_path.read_text(encoding="utf-8").splitlines()
+    except OSError as error:
+        raise ConfigError(f"cannot read query catalog: {error}") from error
+    expected = [line.split(",", 1)[0].strip() for line in catalog_lines if line.strip()]
+    converted = [line.split("\t", 1)[0] for line in converted_lines if line.strip()]
+    if not expected or len(expected) != len(set(expected)) or any(not value.isdecimal() for value in expected):
+        raise ConfigError(f"query catalog has missing or duplicate numeric IDs: {catalog_path}")
+    if any("\t" not in line for line in converted_lines if line.strip()) or converted != expected:
+        raise ConfigError(
+            f"converted queries do not match IDs in {catalog_path}; regenerate {query_path}"
+        )
+    return expected
+
+
 @contextmanager
 def repeated_query_file(query_path: Path, repetitions: int) -> Iterator[Path]:
     try:
@@ -247,6 +264,11 @@ def run_one_query_set(
     if validate_paths:
         require_inputs(binary, run_config, context, query_set_path)
 
+    batch_ids: list[str] | None = None
+    if run_config.get("validate_query_ids_against_catalog"):
+        catalog = Path(format_template(context["query_catalog"], context))
+        batch_ids = validate_batch_query_ids(query_set_path, catalog)
+
     query_glob = run_config.get("query_files_glob")
     if query_glob:
         if run_config.get("query_ids_from_catalog"):
@@ -295,8 +317,7 @@ def run_one_query_set(
             print(f"[{competitor_name}] {semantic}/{query_set}{detail}")
             run_command(command, output_path, run_config.get("stdout_include_regex"), dry_run)
             if not dry_run and run_config.get("write_run_metadata"):
-                write_run_metadata(output_path, {
-                    "query_id": query_path.stem,
+                metadata = {
                     "query_source_path": str(query_path),
                     "competitor": competitor_name,
                     "semantic": semantic,
@@ -305,7 +326,12 @@ def run_one_query_set(
                     "runs": int(context["runs"]),
                     "total_runs": int(context["total_runs"]),
                     "result_path": str(output_path),
-                })
+                }
+                if batch_ids is not None:
+                    metadata["query_ids"] = batch_ids
+                else:
+                    metadata["query_id"] = query_path.stem
+                write_run_metadata(output_path, metadata)
 
 
 def main() -> int:

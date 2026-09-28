@@ -27,7 +27,7 @@
         "pathrex_graph": "{root}/../wikidata/Wikidata/wikidata-mm",
         "rpqmatrix_dataset": "{root}/../wikidata/Wikidata/wikidata-orig/wikidata.dat",
         "rpqmatrix_gb_dataset": "{root}/../wikidata/Wikidata/wikidata-mm-txt/wikidata.dat",
-        "rpqmatrix_query_dir": "{root}/Queries/rpqmatrix/wikidata/wikidata-{query_set}_split_id",
+        "rpqmatrix_query_catalog": "{root}/Queries/rpqmatrix/wikidata/wikidata-{query_set}.tsv",
         "results_root": "{root}/Results/wikidata",
         "analysis_output": "{root}/Scripts/benchmarks/benchmark_results/wikidata"
       }
@@ -128,19 +128,18 @@
       "label": "rpqmatrix",
       "run": {
         "binary": "{rpqmatrix_binary}",
-        "query_path": "{rpqmatrix_query_dir}",
-        "query_files_glob": "*.txt",
-        "query_ids_from_catalog": true,
+        "query_path": "{rpqmatrix_query_catalog}",
+        "validate_query_ids_against_catalog": true,
         "write_run_metadata": true,
-        "output_path": "{results_root}/{query_set}/rpqmatrix/{query_name}",
+        "output_path": "{results_root}/{query_set}/rpqmatrix/res.txt",
         "required_paths": ["{rpqmatrix_dataset}.SO", "{rpqmatrix_dataset}.P", "{rpqmatrix_dataset}.baseline-64/0001.mat"],
         "build_hint": "Build rpq-matrix: cmake --build {root}/Databases/rpq-matrix/build --target baseline_query -j 8",
         "command": ["{binary}", "{rpqmatrix_dataset}", "{query_path}", "{n_predicates}", "{n_triples}", "{runs}", "{warmup_runs}"],
         "stdout_include_regex": "^[0-9]+;"
       },
       "analysis": {
-        "reader": "semicolon_files",
-        "path": "{results_root}/{query_set}/rpqmatrix/{query_id}.txt",
+        "reader": "semicolon_batch",
+        "path": "{results_root}/{query_set}/rpqmatrix/res.txt",
         "delimiter": ";",
         "value_column": 2,
         "verify_query_id": true,
@@ -154,19 +153,18 @@
       "label": "rpqmatrix-gb",
       "run": {
         "binary": "{rpqmatrix_gb_binary}",
-        "query_path": "{rpqmatrix_query_dir}",
-        "query_files_glob": "*.txt",
-        "query_ids_from_catalog": true,
+        "query_path": "{rpqmatrix_query_catalog}",
+        "validate_query_ids_against_catalog": true,
         "write_run_metadata": true,
-        "output_path": "{results_root}/{query_set}/rpqmatrix-gb/{query_name}",
+        "output_path": "{results_root}/{query_set}/rpqmatrix-gb/res.txt",
         "required_paths": ["{rpqmatrix_gb_dataset}.SO", "{rpqmatrix_gb_dataset}.P", "{rpqmatrix_gb_dataset}.baseline-64/0001.mat"],
         "build_hint": "Build rpq-matrix_GB: cmake --build {root}/Databases/rpq-matrix_GB/build --target baselineGB_query -j 8",
         "command": ["{binary}", "{rpqmatrix_gb_dataset}", "{query_path}", "{n_predicates}", "{n_triples}", "{runs}", "{warmup_runs}"],
         "stdout_include_regex": "^[0-9]+;"
       },
       "analysis": {
-        "reader": "semicolon_files",
-        "path": "{results_root}/{query_set}/rpqmatrix-gb/{query_id}.txt",
+        "reader": "semicolon_batch",
+        "path": "{results_root}/{query_set}/rpqmatrix-gb/res.txt",
         "delimiter": ";",
         "value_column": 2,
         "verify_query_id": true,

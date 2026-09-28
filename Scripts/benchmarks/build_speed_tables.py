@@ -269,6 +269,54 @@ def read_semicolon_metric(
     return values
 
 
+def read_semicolon_batch(
+    analysis: Mapping[str, Any],
+    context: Mapping[str, Any],
+    queries: list[str],
+) -> list[float | None]:
+    path = Path(format_template(analysis["path"], context))
+    ids = [query.split(",", 1)[0].strip() for query in queries]
+    if len(ids) != len(set(ids)) or any(not query_id.isdecimal() for query_id in ids):
+        raise ConfigError("batch results require unique numeric query IDs in the catalog")
+    values: list[float | None] = [None] * len(ids)
+    if not path.is_file():
+        return values
+
+    delimiter = str(analysis.get("delimiter", ";"))
+    value_column = int(analysis.get("value_column", 2))
+    warmup_runs = int(format_template(analysis.get("warmup_runs", 0), context))
+    measured_runs = int(format_template(analysis.get("runs", "{runs}"), context))
+    required_samples = warmup_runs + measured_runs
+    scale_to_ns = float(format_template(analysis.get("scale_to_ns", 1.0), context))
+    samples: dict[str, list[float]] = {query_id: [] for query_id in ids}
+    try:
+        with path.open("r", encoding="utf-8") as file:
+            for line_number, line in enumerate(file, start=1):
+                parts = line.strip().split(delimiter)
+                if len(parts) <= value_column or parts[0] not in samples:
+                    warn(f"unexpected result row in {path}:{line_number}: {line.strip()}")
+                    continue
+                try:
+                    value = float(parts[value_column]) * scale_to_ns
+                except ValueError:
+                    warn(f"invalid timing in {path}:{line_number}: {line.strip()}")
+                    continue
+                if math.isfinite(value):
+                    samples[parts[0]].append(value)
+    except OSError as error:
+        warn(f"cannot read result {path}: {error}")
+        return values
+
+    for index, query_id in enumerate(ids):
+        query_samples = samples[query_id]
+        if len(query_samples) != required_samples:
+            warn(f"incomplete or stale result for query {query_id} in {path}: expected {required_samples} samples, found {len(query_samples)}")
+            continue
+        measured = query_samples[warmup_runs:]
+        values[index] = sum(measured) / measured_runs
+    return values
+
+
 def read_competitor_metrics(
     competitor_name: str,
     competitor: Mapping[str, Any],
@@ -288,6 +336,9 @@ def read_competitor_metrics(
         }
     if reader == "semicolon_files":
         values = read_semicolon_metric(analysis, context, queries)
+        return {metric_name: values for metric_name in metrics}
+    if reader == "semicolon_batch":
+        values = read_semicolon_batch(analysis, context, queries)
         return {metric_name: values for metric_name in metrics}
     warn(f"competitor {competitor_name!r} uses unknown reader {reader!r}")
     return {}

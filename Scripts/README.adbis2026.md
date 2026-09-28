@@ -6,8 +6,8 @@ other benchmark server.
 
 The three query sets are `sparql-queries-any-con`, `sparql-queries_CON_ANY`, and
 `only-any-safe`. The original files live in `/home/lamba/ADBIS2026/wikidata-*.txt`.
-Pathrex reads those files directly. The two standalone RPQ-matrix engines read converted
-queries in `Queries/rpqmatrix/wikidata/`.
+Pathrex reads those files directly. The two standalone RPQ-matrix engines read one
+converted TSV per query set from `Queries/rpqmatrix/wikidata/`.
 
 Generate ID-aware standalone queries from the original numbered files:
 
@@ -17,22 +17,16 @@ python3 Scripts/converters/convert_query_mm_to_rpqmatrix.py --preserve-ids \
   ../wikidata-sparql-queries_CON_ANY.txt \
   ../wikidata-only-any-safe.txt \
   -o Queries/rpqmatrix/wikidata
-for source in Queries/rpqmatrix/wikidata/*.tsv; do
-  python3 Scripts/converters/split_and_extend.py "$source" 1 \
-    -o "${source%.tsv}_split_id"
-done
 ```
 
-The TSV and every split `<ID>.txt` keep each original query ID as a tab-separated
-prefix (`<ID>\t<query>`). Both baseline engines strip the prefix before parsing
-and print that ID in every semicolon result row. The runner takes the current
-IDs from the original catalog, so obsolete split files left after removing a
-query are ignored. `--runs` and `--warmup-runs` are passed to the engines, which
-execute each query `warmup_runs + runs` times in the same loaded process;
-split files need only one query line. Each successful result has a neighboring
-`<ID>.txt.meta.json` with the source ID, warm-up count, measured count and paths.
-The first `warmup_runs` rows are excluded by the report reader. Old unprefixed
-query files remain supported; those use the engine's one-based line number as ID.
+Each TSV line has an original query ID as a tab-separated prefix (`<ID>\t<query>`).
+The runner validates the TSV's ordered IDs against the original catalog, then
+launches each baseline engine **once per query set**. The engine loads the index
+once, strips the prefix before parsing, executes every query `warmup_runs + runs`
+times, and prints its original ID in every semicolon result row. One `res.txt`
+and one `res.txt.meta.json` are written per engine and query set. The report
+reader groups rows by ID and excludes the first `warmup_runs` samples per ID.
+The older split files are no longer used by this configuration.
 
 The dataset paths differ by engine:
 
@@ -69,10 +63,6 @@ To run the standalone engines as well, replace the competitor list with
 `join,metaac,mnc,hybrid,rpqmatrix,rpqmatrix-gb` (or use `all` to include `none`).
 Results go to `Results/wikidata/<query-set>/<competitor>/`.
 
-**Runtime warning:** the current runner starts each standalone RPQ-matrix engine once
-per query. Each process reloads the entire Wikidata index; with hundreds of queries,
-this can take far longer than the measured query execution. The benchmark's recorded
-times exclude this loading, but the wall-clock time of the full run does not. Prefer
-running Pathrex first and plan a separate window for the standalone engines. `--keep-going`
-continues after a failed competitor/query set, not after an individual Pathrex query
-fails inside one `pathrex bench` process.
+The RPQ-matrix engines now load the index once per query set, not once per query.
+`--keep-going` continues after a failed competitor/query set; it cannot recover
+individual queries if an engine process is killed (for example, by OOM).
