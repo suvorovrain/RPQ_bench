@@ -51,7 +51,7 @@ def convert_line(raw_line: str, line_number: int, source: Path, preserve_id: boo
     path_expr = " ".join(parts[1:-1])
 
     converted = f"{subject} {path_expr} {obj}#"
-    return f"{query_id}\t{converted}" if preserve_id else converted
+    return f"{query_id} {converted}" if preserve_id else converted
 
 
 def convert_file(input_path: Path, output_dir: Path, preserve_ids: bool = False) -> Path:
@@ -92,7 +92,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--preserve-ids", action="store_true",
-        help="Write '<source ID>\\t<query>' for the ID-aware splitter; engines still receive plain queries.",
+        help="Write '<source ID> <query>' for the ID-aware engines.",
     )
     return parser.parse_args()
 

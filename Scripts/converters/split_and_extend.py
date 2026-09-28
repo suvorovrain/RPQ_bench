@@ -28,16 +28,18 @@ def split_and_extend(input_path: Path, repetitions: int, output_dir: Path) -> in
             value = line.rstrip("\r\n")
             if not value:
                 continue
-            if "\t" in value:
-                query_id, query = value.split("\t", 1)
-                if not query_id.isdecimal() or not query:
-                    raise ValueError(f"{input_path}:{line_number}: expected '<numeric ID>\\t<query>'")
+            prefix, separator, remainder = value.partition(" ")
+            if prefix.isdecimal():
+                if not separator or not remainder or remainder.startswith(" "):
+                    raise ValueError(f"{input_path}:{line_number}: expected '<numeric ID> <query>'")
+                query_id, query = prefix, remainder
+                stored_query = value
             else:
                 query_id, query = str(line_number), value
+                stored_query = query
             if query_id in seen_ids:
                 raise ValueError(f"{input_path}:{line_number}: duplicate query ID {query_id}")
             seen_ids.add(query_id)
-            stored_query = f"{query_id}\t{query}" if "\t" in value else query
             write_repeated_query(output_dir / f"{query_id}.txt", stored_query, repetitions)
             count += 1
 

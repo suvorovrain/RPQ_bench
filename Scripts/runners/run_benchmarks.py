@@ -200,10 +200,10 @@ def validate_batch_query_ids(query_path: Path, catalog_path: Path) -> list[str]:
     except OSError as error:
         raise ConfigError(f"cannot read query catalog: {error}") from error
     expected = [line.split(",", 1)[0].strip() for line in catalog_lines if line.strip()]
-    converted = [line.split("\t", 1)[0] for line in converted_lines if line.strip()]
+    converted = [line.partition(" ")[0] for line in converted_lines if line.strip()]
     if not expected or len(expected) != len(set(expected)) or any(not value.isdecimal() for value in expected):
         raise ConfigError(f"query catalog has missing or duplicate numeric IDs: {catalog_path}")
-    if any("\t" not in line for line in converted_lines if line.strip()) or converted != expected:
+    if any(" " not in line or "\t" in line or line.partition(" ")[2].startswith(" ") for line in converted_lines if line.strip()) or converted != expected:
         raise ConfigError(
             f"converted queries do not match IDs in {catalog_path}; regenerate {query_path}"
         )

@@ -19,7 +19,7 @@ python3 Scripts/converters/convert_query_mm_to_rpqmatrix.py --preserve-ids \
   -o Queries/rpqmatrix/wikidata
 ```
 
-Each TSV line has an original query ID as a tab-separated prefix (`<ID>\t<query>`).
+Each converted line has an original query ID followed by one space (`<ID> <query>`).
 The runner validates the TSV's ordered IDs against the original catalog, then
 launches each baseline engine **once per query set**. The engine loads the index
 once, strips the prefix before parsing, executes every query `warmup_runs + runs`
