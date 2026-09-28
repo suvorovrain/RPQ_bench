@@ -212,6 +212,7 @@ def read_semicolon_value(
     warmup_runs: int,
     measured_runs: int,
     scale_to_ns: float,
+    expected_query_id: str | None = None,
 ) -> float | None:
     if not path.is_file():
         return None
@@ -222,6 +223,9 @@ def read_semicolon_value(
                 parts = line.strip().split(delimiter)
                 if len(parts) <= value_column:
                     continue
+                if expected_query_id is not None and parts[0] != expected_query_id:
+                    warn(f"wrong query ID in {path}: expected {expected_query_id}, found {parts[0]}")
+                    return None
                 try:
                     value = float(parts[value_column]) * scale_to_ns
                 except ValueError:
@@ -245,7 +249,7 @@ def read_semicolon_value(
 def read_semicolon_metric(
     analysis: Mapping[str, Any],
     context: Mapping[str, Any],
-    expected_count: int,
+    queries: list[str],
 ) -> list[float | None]:
     delimiter = str(analysis.get("delimiter", ";"))
     value_column = int(analysis.get("value_column", 2))
@@ -253,11 +257,13 @@ def read_semicolon_metric(
     measured_runs = int(format_template(analysis.get("runs", "{runs}"), context))
     scale_to_ns = float(format_template(analysis.get("scale_to_ns", 1.0), context))
     values = []
-    for query_index in range(1, expected_count + 1):
-        path = Path(format_template(analysis["path"], {**context, "query_index": query_index}))
+    for query_index, query in enumerate(queries, start=1):
+        query_id = query.split(",", 1)[0].strip() if "," in query else str(query_index)
+        path = Path(format_template(analysis["path"], {**context, "query_index": query_index, "query_id": query_id}))
         values.append(
             read_semicolon_value(
-                path, delimiter, value_column, warmup_runs, measured_runs, scale_to_ns
+                path, delimiter, value_column, warmup_runs, measured_runs, scale_to_ns,
+                query_id if analysis.get("verify_query_id") else None,
             )
         )
     return values
@@ -267,7 +273,7 @@ def read_competitor_metrics(
     competitor_name: str,
     competitor: Mapping[str, Any],
     context: Mapping[str, Any],
-    expected_count: int,
+    queries: list[str],
 ) -> dict[str, list[float | None]]:
     analysis = competitor.get("analysis")
     if not isinstance(analysis, dict):
@@ -277,11 +283,11 @@ def read_competitor_metrics(
     reader = analysis.get("reader")
     if reader == "json_timing":
         return {
-            metric_name: read_pathrex_metric(analysis, metric, context, expected_count)
+            metric_name: read_pathrex_metric(analysis, metric, context, len(queries))
             for metric_name, metric in metrics.items()
         }
     if reader == "semicolon_files":
-        values = read_semicolon_metric(analysis, context, expected_count)
+        values = read_semicolon_metric(analysis, context, queries)
         return {metric_name: values for metric_name in metrics}
     warn(f"competitor {competitor_name!r} uses unknown reader {reader!r}")
     return {}
@@ -507,7 +513,7 @@ def main() -> int:
                 item_context = {**context, "semantic": semantic, "query_set": query_set}
                 queries = read_queries(context, semantic, query_set)
                 metric_values = {
-                    name: read_competitor_metrics(name, competitor, item_context, len(queries))
+                    name: read_competitor_metrics(name, competitor, item_context, queries)
                     for name, competitor in selected
                 }
                 table_data = table_series(

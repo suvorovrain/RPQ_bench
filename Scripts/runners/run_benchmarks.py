@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import re
 import shlex
@@ -174,6 +175,24 @@ def run_command(
             Path(temp_name).unlink(missing_ok=True)
 
 
+def write_run_metadata(output_path: Path, metadata: Mapping[str, Any]) -> None:
+    metadata_path = output_path.with_name(output_path.name + ".meta.json")
+    temp_name: str | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", dir=output_path.parent,
+            prefix=f".{metadata_path.name}.", suffix=".tmp", delete=False,
+        ) as output:
+            temp_name = output.name
+            json.dump(metadata, output, indent=2)
+            output.write("\n")
+        Path(temp_name).replace(metadata_path)
+        temp_name = None
+    finally:
+        if temp_name:
+            Path(temp_name).unlink(missing_ok=True)
+
+
 @contextmanager
 def repeated_query_file(query_path: Path, repetitions: int) -> Iterator[Path]:
     try:
@@ -230,7 +249,21 @@ def run_one_query_set(
 
     query_glob = run_config.get("query_files_glob")
     if query_glob:
-        query_paths = sorted(query_set_path.glob(str(query_glob)), key=lambda path: natural_key(path.name))
+        if run_config.get("query_ids_from_catalog"):
+            catalog = Path(format_template(context["query_catalog"], context))
+            try:
+                lines = catalog.read_text(encoding="utf-8").splitlines()
+            except OSError as error:
+                raise ConfigError(f"cannot read query catalog {catalog}: {error}") from error
+            ids = [line.split(",", 1)[0].strip() for line in lines if line.strip()]
+            if len(ids) != len(set(ids)) or any(not query_id.isdecimal() for query_id in ids):
+                raise ConfigError(f"query catalog has missing or duplicate numeric IDs: {catalog}")
+            query_paths = [query_set_path / f"{query_id}.txt" for query_id in ids]
+            missing = [path for path in query_paths if not path.is_file()]
+            if validate_paths and missing:
+                raise ConfigError(f"query file for catalog ID does not exist: {missing[0]}")
+        else:
+            query_paths = sorted(query_set_path.glob(str(query_glob)), key=lambda path: natural_key(path.name))
         if validate_paths and not query_paths:
             raise ConfigError(f"no query files match {query_set_path / str(query_glob)}")
     else:
@@ -261,6 +294,18 @@ def run_one_query_set(
             detail = f" query {query_path.name}" if query_glob else ""
             print(f"[{competitor_name}] {semantic}/{query_set}{detail}")
             run_command(command, output_path, run_config.get("stdout_include_regex"), dry_run)
+            if not dry_run and run_config.get("write_run_metadata"):
+                write_run_metadata(output_path, {
+                    "query_id": query_path.stem,
+                    "query_source_path": str(query_path),
+                    "competitor": competitor_name,
+                    "semantic": semantic,
+                    "query_set": query_set,
+                    "warmup_runs": int(context["warmup_runs"]),
+                    "runs": int(context["runs"]),
+                    "total_runs": int(context["total_runs"]),
+                    "result_path": str(output_path),
+                })
 
 
 def main() -> int:

@@ -22,10 +22,24 @@ def split_and_extend(input_path: Path, repetitions: int, output_dir: Path) -> in
     output_dir.mkdir(parents=True, exist_ok=True)
 
     count = 0
+    seen_ids: set[str] = set()
     with input_path.open("r", encoding="utf-8") as input_file:
-        for count, line in enumerate(input_file, start=1):
-            query = line.rstrip("\r\n")
-            write_repeated_query(output_dir / f"{count}.txt", query, repetitions)
+        for line_number, line in enumerate(input_file, start=1):
+            value = line.rstrip("\r\n")
+            if not value:
+                continue
+            if "\t" in value:
+                query_id, query = value.split("\t", 1)
+                if not query_id.isdecimal() or not query:
+                    raise ValueError(f"{input_path}:{line_number}: expected '<numeric ID>\\t<query>'")
+            else:
+                query_id, query = str(line_number), value
+            if query_id in seen_ids:
+                raise ValueError(f"{input_path}:{line_number}: duplicate query ID {query_id}")
+            seen_ids.add(query_id)
+            stored_query = f"{query_id}\t{query}" if "\t" in value else query
+            write_repeated_query(output_dir / f"{query_id}.txt", stored_query, repetitions)
+            count += 1
 
     return count
 

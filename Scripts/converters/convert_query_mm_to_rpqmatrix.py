@@ -10,9 +10,9 @@ from typing import Iterable
 
 
 def denormalize_endpoint(token: str, *, is_subject: bool) -> str:
-    if is_subject and token == "?sub":
+    if is_subject and token in {"?sub", "?x1", "?x2"}:
         return "?x"
-    if not is_subject and token == "?obj":
+    if not is_subject and token in {"?obj", "?x1", "?x2"}:
         return "?y"
     return token
 
@@ -29,14 +29,17 @@ def iter_input_paths(patterns: Iterable[str]) -> list[Path]:
     return paths
 
 
-def convert_line(raw_line: str, line_number: int, source: Path) -> str | None:
+def convert_line(raw_line: str, line_number: int, source: Path, preserve_id: bool = False) -> str | None:
     line = raw_line.strip()
     if not line:
         return None
     if "," not in line:
         raise ValueError(f"{source}:{line_number}: expected '<number>,<subject> <path> <object>', got {raw_line!r}")
 
-    _, query = line.split(",", 1)
+    query_id, query = line.split(",", 1)
+    query_id = query_id.strip()
+    if not query_id.isdecimal():
+        raise ValueError(f"{source}:{line_number}: expected a numeric query ID, got {query_id!r}")
     query = query.strip()
 
     parts = query.split()
@@ -47,16 +50,17 @@ def convert_line(raw_line: str, line_number: int, source: Path) -> str | None:
     obj = denormalize_endpoint(parts[-1], is_subject=False)
     path_expr = " ".join(parts[1:-1])
 
-    return f"{subject} {path_expr} {obj}#"
+    converted = f"{subject} {path_expr} {obj}#"
+    return f"{query_id}\t{converted}" if preserve_id else converted
 
 
-def convert_file(input_path: Path, output_dir: Path) -> Path:
+def convert_file(input_path: Path, output_dir: Path, preserve_ids: bool = False) -> Path:
     output_path = output_path_for(input_path, output_dir)
 
     converted: list[str] = []
     with input_path.open("r", encoding="utf-8") as source_file:
         for line_number, raw_line in enumerate(source_file, start=1):
-            converted_line = convert_line(raw_line, line_number, input_path)
+            converted_line = convert_line(raw_line, line_number, input_path, preserve_ids)
             if converted_line is not None:
                 converted.append(converted_line)
 
@@ -86,6 +90,10 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         help="Directory where '*.tsv' files will be written.",
     )
+    parser.add_argument(
+        "--preserve-ids", action="store_true",
+        help="Write '<source ID>\\t<query>' for the ID-aware splitter; engines still receive plain queries.",
+    )
     return parser.parse_args()
 
 
@@ -103,7 +111,7 @@ def main() -> int:
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
     for input_path in input_paths:
-        output_path = convert_file(input_path, args.output_dir)
+        output_path = convert_file(input_path, args.output_dir, args.preserve_ids)
         print(f"{input_path} -> {output_path}")
 
     return 0
