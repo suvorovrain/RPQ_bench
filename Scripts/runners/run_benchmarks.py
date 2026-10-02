@@ -140,7 +140,7 @@ def run_command(
     printable = shlex.join(command)
     if stdout_include_regex:
         printable += f" | keep-lines {shlex.quote(stdout_include_regex)} > {shlex.quote(str(output_path))}"
-    print(f"+ {printable}")
+    print(f"+ {printable}", flush=True)
     if dry_run:
         return
 
@@ -314,7 +314,7 @@ def run_one_query_set(
             item_context["output_path"] = str(output_path)
             command = [format_template(argument, item_context) for argument in run_config["command"]]
             detail = f" query {query_path.name}" if query_glob else ""
-            print(f"[{competitor_name}] {semantic}/{query_set}{detail}")
+            print(f"[{competitor_name}] {semantic}/{query_set}{detail}", flush=True)
             run_command(command, output_path, run_config.get("stdout_include_regex"), dry_run)
             if not dry_run and run_config.get("write_run_metadata"):
                 metadata = {

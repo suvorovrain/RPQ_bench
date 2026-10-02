@@ -105,7 +105,7 @@
         "command": [
           "{binary}", "bench", "--graph", "{pathrex_graph}", "--format", "mm",
           "--queries", "{query_path}", "--base-iri={base_iri}", "--algo", "rpqmatrix",
-          "--rpqmatrix-optimizer", "cardinality", "--output", "{output_path}",
+          "--rpqmatrix-optimizer", "join", "--output", "{output_path}",
           "--checkpoint", "{pathrex_opt_checkpoint}", "--runs", "{runs}",
           "--warm-up-runs", "{warmup_runs}"
         ]

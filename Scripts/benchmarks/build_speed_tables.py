@@ -164,10 +164,18 @@ def read_pathrex_metric(
     analysis: Mapping[str, Any],
     metric: Mapping[str, Any],
     context: Mapping[str, Any],
-    expected_count: int,
+    queries: list[str],
 ) -> list[float | None]:
     path = Path(format_template(analysis["path"], context))
-    values: list[float | None] = [None] * expected_count
+    values: list[float | None] = [None] * len(queries)
+    query_ids = [query.split(",", 1)[0].strip() for query in queries if "," in query]
+    by_id = {query.split(",", 1)[0].strip(): index for index, query in enumerate(queries) if "," in query}
+    if len(by_id) != len(query_ids):
+        warn("query catalog contains duplicate IDs; refusing ambiguous JSON results")
+        return values
+    if analysis.get("verify_query_id") and (len(query_ids) != len(queries) or any(not value.isdecimal() for value in query_ids)):
+        warn("query catalog must contain numeric IDs for ID-verified JSON results")
+        return values
     if not path.is_file():
         return values
     try:
@@ -189,12 +197,21 @@ def read_pathrex_metric(
     for item in data["results"]:
         if not isinstance(item, dict):
             continue
-        raw_index = item.get("query_index")
-        if not isinstance(raw_index, int):
-            continue
-        index = raw_index - index_base
-        if not 0 <= index < expected_count:
-            continue
+        query_id = item.get("query_id")
+        if query_id is not None and by_id:
+            index = by_id.get(str(query_id))
+            if index is None:
+                continue
+        else:
+            if analysis.get("verify_query_id"):
+                warn(f"missing query ID in {path}; refusing index-based matching")
+                continue
+            raw_index = item.get("query_index")
+            if not isinstance(raw_index, int):
+                continue
+            index = raw_index - index_base
+            if not 0 <= index < len(queries):
+                continue
         algorithms = item.get("algorithms")
         algorithm_result = algorithms.get(algorithm) if isinstance(algorithms, dict) else None
         timing_root = algorithm_result.get("timing") if isinstance(algorithm_result, dict) else None
@@ -331,7 +348,7 @@ def read_competitor_metrics(
     reader = analysis.get("reader")
     if reader == "json_timing":
         return {
-            metric_name: read_pathrex_metric(analysis, metric, context, len(queries))
+            metric_name: read_pathrex_metric(analysis, metric, context, queries)
             for metric_name, metric in metrics.items()
         }
     if reader == "semicolon_files":
