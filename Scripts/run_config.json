@@ -1,0 +1,40 @@
+{
+  "runs": 5,
+  "warmup_runs": 1,
+  "n_predicates": 1393,
+  "n_triples": 609358925,
+  "pathrex": {
+    "source": "Databases/pathrex",
+    "binary": "target/release/pathrex",
+    "graph": "../wikidata/Wikidata/wikidata-mm",
+    "base_iri": "http://example.org/",
+    "optimizers": ["join", "metaac", "mnc", "hybrid", "pang-hybrid", "sampling"],
+    "output": "Results/wikidata"
+  },
+  "rpq-matrix": {
+    "source": "Databases/rpq-matrix",
+    "binary": "build/baseline_query",
+    "dataset": "../wikidata/Wikidata/wikidata-orig/wikidata.dat",
+    "output": "Results/wikidata"
+  },
+  "rpq-matrix_gb": {
+    "source": "Databases/rpq-matrix_GB",
+    "binary": "build/baselineGB_query",
+    "dataset": "../wikidata/Wikidata/wikidata-mm-txt/wikidata.dat",
+    "output": "Results/wikidata"
+  },
+  "queries": {
+    "sparql-queries-any-con": {
+      "pathrex": "../wikidata-sparql-queries-any-con.txt",
+      "rpqmatrix": "Queries/rpqmatrix/wikidata/wikidata-sparql-queries-any-con.tsv"
+    },
+    "sparql-queries_CON_ANY": {
+      "pathrex": "../wikidata-sparql-queries_CON_ANY.txt",
+      "rpqmatrix": "Queries/rpqmatrix/wikidata/wikidata-sparql-queries_CON_ANY.tsv"
+    },
+    "only-any-safe": {
+      "pathrex": "../wikidata-only-any-safe.txt",
+      "rpqmatrix": "Queries/rpqmatrix/wikidata/wikidata-only-any-safe.tsv"
+    }
+  }
+}

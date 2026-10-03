@@ -1,392 +1,162 @@
 #!/usr/bin/env python3
-"""Run configured benchmark competitors for one or more query sets."""
-
-from __future__ import annotations
+"""Run three engines using Scripts/run_config.json; no command templates."""
 
 import argparse
 import json
 import os
+from pathlib import Path
 import re
 import shlex
 import subprocess
-import sys
 import tempfile
-from contextlib import contextmanager, nullcontext
-from pathlib import Path
-from typing import Any, Iterator, Mapping
 
-SCRIPTS_DIR = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(SCRIPTS_DIR))
-
-from benchmark_config import (  # noqa: E402
-    ConfigError,
-    build_context,
-    discover_query_sets,
-    format_template,
-    load_config,
-    natural_key,
-    parse_overrides,
-    repository_root,
-    selected_competitors,
-    semantic_names,
-)
+ROOT = Path(__file__).resolve().parents[2]
+ENGINES = ("pathrex", "rpq-matrix", "rpq-matrix_gb")
 
 
-def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="Run competitors declared in Scripts/benchmark_config.json."
-    )
-    parser.add_argument("legacy", nargs="*", metavar="SELECTOR", help=argparse.SUPPRESS)
-    parser.add_argument("--config", help="Path to another benchmark JSON config.")
-    parser.add_argument("--root", help="Repository root (normally detected automatically).")
-    parser.add_argument("--dataset", help="Dataset name from the config.")
-    parser.add_argument(
-        "--competitor", action="append", default=[],
-        help="Competitor name, comma-separated names, or all. May be repeated.",
-    )
-    parser.add_argument("--semantic", default=None, help="Semantic name/alias or all.")
-    parser.add_argument("--query-set", default=None, help="Query-set name or all.")
-    parser.add_argument("--runs", type=int, help="Override the configured measured run count.")
-    parser.add_argument("--warmup-runs", type=int, help="Override the configured warm-up count.")
-    parser.add_argument(
-        "--set", dest="overrides", action="append", default=[], metavar="NAME=VALUE",
-        help="Override any template variable. May be repeated.",
-    )
-    parser.add_argument("--dry-run", action="store_true", help="Print commands without running them.")
-    parser.add_argument(
-        "--no-validate-paths", action="store_true",
-        help="Do not require binaries, datasets, or query files (useful with --dry-run).",
-    )
-    parser.add_argument(
-        "--keep-going", action="store_true",
-        help="Continue with other query sets and competitors after a failure.",
-    )
-    parser.add_argument("--list", action="store_true", help="List configured datasets and competitors.")
-    args = parser.parse_args()
-
-    if len(args.legacy) > 2:
-        parser.error("legacy positional form accepts only [semantic] [query-set]")
-    if args.legacy:
-        if args.semantic is not None:
-            parser.error("do not combine positional semantic with --semantic")
-        args.semantic = args.legacy[0]
-    if len(args.legacy) == 2:
-        if args.query_set is not None:
-            parser.error("do not combine positional query-set with --query-set")
-        args.query_set = args.legacy[1]
-    args.semantic = args.semantic or "all"
-    args.query_set = args.query_set or "all"
-    return args
+def select(value, available):
+    names = list(available) if value == "all" else list(dict.fromkeys(value.split(",")))
+    if not names or any(name not in available for name in names):
+        raise ValueError(f"unknown selection {value!r}; available: {', '.join(available)}")
+    return names
 
 
-def list_config(config: Mapping[str, Any]) -> None:
-    print("Datasets:")
-    for name, dataset in config["datasets"].items():
-        print(f"  {name}: {dataset.get('description', '')}")
-    print("Competitors:")
-    for name, competitor in config["competitors"].items():
-        print(f"  {name}: {competitor.get('label', name)}")
+def query_ids(path, converted=False):
+    lines = [line.strip() for line in path.read_text().splitlines() if line.strip()]
+    ids = []
+    for line in lines:
+        number, separator, query = line.partition(" " if converted else ",")
+        if not separator or not number.isdecimal() or not query.strip():
+            raise ValueError(f"invalid numbered query in {path}: {line!r}")
+        if converted and ("\t" in line or query.startswith(" ") or not query.endswith("#")):
+            raise ValueError(f"expected '<ID> <query>#' with one space in {path}")
+        ids.append(number)
+    if not ids or len(ids) != len(set(ids)):
+        raise ValueError(f"empty query file or duplicate query IDs: {path}")
+    return ids
 
 
-def query_sets_for(
-    selector: str, semantic: str, context: Mapping[str, Any], validate_paths: bool
-) -> list[str]:
-    catalog_template = format_template(
-        context["query_catalog"], {**context, "semantic": semantic}, strict=False
-    )
-    if selector not in ("", "all"):
-        configured = context.get("query_sets")
-        if configured is not None and selector not in configured:
-            choices = ", ".join(configured)
-            raise ConfigError(f"unknown query set {selector!r}; configured values: {choices}")
-        catalog = Path(format_template(catalog_template, {**context, "query_set": selector}))
-        if validate_paths and not catalog.is_file():
-            raise ConfigError(f"query catalog does not exist: {catalog}")
-        return [selector]
-
-    query_sets = context.get("query_sets") or discover_query_sets(catalog_template)
-    if not query_sets:
-        raise ConfigError(f"no query sets match catalog template: {catalog_template}")
-    if validate_paths:
-        for query_set in query_sets:
-            catalog = Path(
-                format_template(catalog_template, {**context, "query_set": query_set})
-            )
-            if not catalog.is_file():
-                raise ConfigError(f"query catalog does not exist: {catalog}")
-    return query_sets
-
-
-def require_inputs(
-    binary: Path, run_config: Mapping[str, Any], context: Mapping[str, Any], query_path: Path
-) -> None:
-    if not binary.is_file() or not os.access(binary, os.X_OK):
-        hint = format_template(run_config.get("build_hint", ""), context)
-        message = f"executable does not exist or is not executable: {binary}"
-        if hint:
-            message += f"\n{hint}"
-        raise ConfigError(message)
-    if not query_path.exists():
-        raise ConfigError(f"query path does not exist: {query_path}")
-    for template in run_config.get("required_paths", []):
-        path = Path(format_template(template, context))
-        if not path.exists():
-            raise ConfigError(f"required dataset path does not exist: {path}")
-
-
-def run_command(
-    command: list[str], output_path: Path, stdout_include_regex: str | None, dry_run: bool
-) -> None:
-    printable = shlex.join(command)
-    if stdout_include_regex:
-        printable += f" | keep-lines {shlex.quote(stdout_include_regex)} > {shlex.quote(str(output_path))}"
-    print(f"+ {printable}", flush=True)
+def run(command, output, metadata, dry_run):
+    print("+ " + shlex.join(command), flush=True)
     if dry_run:
         return
-
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    if not stdout_include_regex:
+    output.parent.mkdir(parents=True, exist_ok=True)
+    if metadata is None:
         subprocess.run(command, check=True)
         return
-
-    pattern = re.compile(stdout_include_regex)
-    temp_name: str | None = None
+    # Preserve baseline rows, including warm-ups, and only publish a successful batch.
+    temporary = None
     try:
-        with tempfile.NamedTemporaryFile(
-            mode="w", encoding="utf-8", dir=output_path.parent,
-            prefix=f".{output_path.name}.", suffix=".tmp", delete=False,
-        ) as output:
-            temp_name = output.name
-            process = subprocess.Popen(
-                command, stdout=subprocess.PIPE, stderr=None, text=True,
-                encoding="utf-8", errors="replace",
-            )
-            assert process.stdout is not None
+        with tempfile.NamedTemporaryFile(mode="w", dir=output.parent, delete=False) as stream:
+            temporary = Path(stream.name)
+            process = subprocess.Popen(command, stdout=subprocess.PIPE, text=True)
             for line in process.stdout:
-                if pattern.search(line):
-                    output.write(line)
-            return_code = process.wait()
-            if return_code != 0:
-                raise subprocess.CalledProcessError(return_code, command)
-        Path(temp_name).replace(output_path)
-        temp_name = None
+                if re.match(r"^[0-9]+;", line):
+                    stream.write(line)
+            code = process.wait()
+            if code:
+                raise subprocess.CalledProcessError(code, command)
+        temporary.replace(output)
+        temporary = None
+        output.with_name(output.name + ".meta.json").write_text(json.dumps(metadata, indent=2) + "\n")
     finally:
-        if temp_name:
-            Path(temp_name).unlink(missing_ok=True)
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
 
 
-def write_run_metadata(output_path: Path, metadata: Mapping[str, Any]) -> None:
-    metadata_path = output_path.with_name(output_path.name + ".meta.json")
-    temp_name: str | None = None
-    try:
-        with tempfile.NamedTemporaryFile(
-            mode="w", encoding="utf-8", dir=output_path.parent,
-            prefix=f".{metadata_path.name}.", suffix=".tmp", delete=False,
-        ) as output:
-            temp_name = output.name
-            json.dump(metadata, output, indent=2)
-            output.write("\n")
-        Path(temp_name).replace(metadata_path)
-        temp_name = None
-    finally:
-        if temp_name:
-            Path(temp_name).unlink(missing_ok=True)
-
-
-def validate_batch_query_ids(query_path: Path, catalog_path: Path) -> list[str]:
-    try:
-        catalog_lines = catalog_path.read_text(encoding="utf-8").splitlines()
-        converted_lines = query_path.read_text(encoding="utf-8").splitlines()
-    except OSError as error:
-        raise ConfigError(f"cannot read query catalog: {error}") from error
-    expected = [line.split(",", 1)[0].strip() for line in catalog_lines if line.strip()]
-    converted = [line.partition(" ")[0] for line in converted_lines if line.strip()]
-    if not expected or len(expected) != len(set(expected)) or any(not value.isdecimal() for value in expected):
-        raise ConfigError(f"query catalog has missing or duplicate numeric IDs: {catalog_path}")
-    if any(" " not in line or "\t" in line or line.partition(" ")[2].startswith(" ") for line in converted_lines if line.strip()) or converted != expected:
-        raise ConfigError(
-            f"converted queries do not match IDs in {catalog_path}; regenerate {query_path}"
-        )
-    return expected
-
-
-@contextmanager
-def repeated_query_file(query_path: Path, repetitions: int) -> Iterator[Path]:
-    try:
-        queries = [
-            line.rstrip("\r\n")
-            for line in query_path.read_text(encoding="utf-8").splitlines()
-            if line.strip()
-        ]
-    except OSError as error:
-        raise ConfigError(f"cannot read query file {query_path}: {error}") from error
-
-    unique_queries = list(dict.fromkeys(queries))
-    if len(unique_queries) != 1:
-        raise ConfigError(
-            f"query file must contain one repeated non-empty query: {query_path}"
-        )
-
-    temp_name: str | None = None
-    try:
-        with tempfile.NamedTemporaryFile(
-            mode="w", encoding="utf-8", prefix="rpqbench-query-",
-            suffix=query_path.suffix, delete=False,
-        ) as output:
-            temp_name = output.name
-            for _ in range(repetitions):
-                output.write(unique_queries[0])
-                output.write("\n")
-        yield Path(temp_name)
-    finally:
-        if temp_name:
-            Path(temp_name).unlink(missing_ok=True)
-
-
-def run_one_query_set(
-    competitor_name: str,
-    competitor: Mapping[str, Any],
-    semantic: str,
-    query_set: str,
-    base_context: Mapping[str, Any],
-    *,
-    dry_run: bool,
-    validate_paths: bool,
-) -> None:
-    run_config = competitor.get("run")
-    if not isinstance(run_config, dict):
-        raise ConfigError(f"competitor {competitor_name!r} has no run configuration")
-
-    context = {**base_context, "semantic": semantic, "query_set": query_set}
-    binary = Path(format_template(run_config["binary"], context))
-    query_set_path = Path(format_template(run_config["query_path"], {**context, "binary": str(binary)}))
-    context.update(binary=str(binary), query_set_path=str(query_set_path), query_path=str(query_set_path))
-    if validate_paths:
-        require_inputs(binary, run_config, context, query_set_path)
-
-    batch_ids: list[str] | None = None
-    if run_config.get("validate_query_ids_against_catalog"):
-        catalog = Path(format_template(context["query_catalog"], context))
-        batch_ids = validate_batch_query_ids(query_set_path, catalog)
-
-    query_glob = run_config.get("query_files_glob")
-    if query_glob:
-        if run_config.get("query_ids_from_catalog"):
-            catalog = Path(format_template(context["query_catalog"], context))
-            try:
-                lines = catalog.read_text(encoding="utf-8").splitlines()
-            except OSError as error:
-                raise ConfigError(f"cannot read query catalog {catalog}: {error}") from error
-            ids = [line.split(",", 1)[0].strip() for line in lines if line.strip()]
-            if len(ids) != len(set(ids)) or any(not query_id.isdecimal() for query_id in ids):
-                raise ConfigError(f"query catalog has missing or duplicate numeric IDs: {catalog}")
-            query_paths = [query_set_path / f"{query_id}.txt" for query_id in ids]
-            missing = [path for path in query_paths if not path.is_file()]
-            if validate_paths and missing:
-                raise ConfigError(f"query file for catalog ID does not exist: {missing[0]}")
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--config", type=Path, default=ROOT / "Scripts/run_config.json")
+    parser.add_argument("--root", type=Path, default=ROOT, help="Root for relative config paths.")
+    parser.add_argument("--engine", default="all", help="all or comma-separated engine names.")
+    parser.add_argument("--optimizer", default="all", help="Pathrex optimizer filter.")
+    parser.add_argument("--query-set", default="all", help="all or comma-separated query-set names.")
+    parser.add_argument("--runs", type=int)
+    parser.add_argument("--warmup-runs", type=int)
+    parser.add_argument("--dry-run", action="store_true", help="Validate inputs and print commands.")
+    parser.add_argument("--keep-going", action="store_true", help="Continue with the next process after a failure.")
+    args = parser.parse_args()
+    config = json.loads(args.config.read_text())
+    if "competitors" in config:
+        raise ValueError("this is a report config; use Scripts/run_config.json for launching")
+    root = args.root.resolve()
+    path = lambda value: (root / value).resolve()
+    engines = select(args.engine, ENGINES)
+    sets = select(args.query_set, config["queries"])
+    runs = config["runs"] if args.runs is None else args.runs
+    warmup = config["warmup_runs"] if args.warmup_runs is None else args.warmup_runs
+    if type(runs) is not int or type(warmup) is not int or runs < 1 or warmup < 0:
+        raise ValueError("runs must be a positive integer; warmup_runs a nonnegative integer")
+    jobs = []
+    for engine in engines:
+        settings = config[engine]
+        binary = (path(settings["source"]) / settings["binary"]).resolve()
+        if not binary.is_file() or not os.access(binary, os.X_OK):
+            raise ValueError(f"missing executable: {binary}; build {engine} first")
+        output_root = path(settings["output"])
+        if engine == "pathrex":
+            optimizers = select(args.optimizer, settings["optimizers"])
+            if len(settings["optimizers"]) != len(set(settings["optimizers"])):
+                raise ValueError("duplicate Pathrex optimizer names")
+            if any(not re.fullmatch(r"[a-z][a-z0-9-]*", name) for name in optimizers):
+                raise ValueError("optimizer names must be plain CLI names")
+            if not args.dry_run:
+                help_text = subprocess.check_output([str(binary), "bench", "--help"], text=True)
+                for optimizer in optimizers:
+                    if not re.search(r"\b" + re.escape(optimizer) + r"\b", help_text):
+                        raise ValueError(f"{binary} does not advertise {optimizer}; rebuild Pathrex")
+            graph = path(settings["graph"])
+            for required in [graph, graph / "vertices.txt", graph / "edges.txt"]:
+                if not required.exists():
+                    raise ValueError(f"missing graph input: {required}")
         else:
-            query_paths = sorted(query_set_path.glob(str(query_glob)), key=lambda path: natural_key(path.name))
-        if validate_paths and not query_paths:
-            raise ConfigError(f"no query files match {query_set_path / str(query_glob)}")
-    else:
-        query_paths = [query_set_path]
-
-    for index, query_path in enumerate(query_paths, start=1):
-        repetitions_template = run_config.get("query_file_repetitions")
-        repetitions = (
-            int(format_template(repetitions_template, context))
-            if repetitions_template is not None else None
-        )
-        if repetitions is not None and repetitions < 1:
-            raise ConfigError("query_file_repetitions must be a positive integer")
-
-        query_context = (
-            repeated_query_file(query_path, repetitions)
-            if repetitions is not None else nullcontext(query_path)
-        )
-        with query_context as command_query_path:
-            item_context = {
-                **context, "query_path": str(command_query_path),
-                "query_source_path": str(query_path), "query_name": query_path.name,
-                "query_stem": query_path.stem, "query_index": index,
-            }
-            output_path = Path(format_template(run_config["output_path"], item_context))
-            item_context["output_path"] = str(output_path)
-            command = [format_template(argument, item_context) for argument in run_config["command"]]
-            detail = f" query {query_path.name}" if query_glob else ""
-            print(f"[{competitor_name}] {semantic}/{query_set}{detail}", flush=True)
-            run_command(command, output_path, run_config.get("stdout_include_regex"), dry_run)
-            if not dry_run and run_config.get("write_run_metadata"):
-                metadata = {
-                    "query_source_path": str(query_path),
-                    "competitor": competitor_name,
-                    "semantic": semantic,
-                    "query_set": query_set,
-                    "warmup_runs": int(context["warmup_runs"]),
-                    "runs": int(context["runs"]),
-                    "total_runs": int(context["total_runs"]),
-                    "result_path": str(output_path),
-                }
-                if batch_ids is not None:
-                    metadata["query_ids"] = batch_ids
+            optimizers = ["rpqmatrix" if engine == "rpq-matrix" else "rpqmatrix-gb"]
+            dataset = path(settings["dataset"])
+            for required in [Path(str(dataset) + suffix) for suffix in (".SO", ".P", ".baseline-64/0001.mat")]:
+                if not required.exists():
+                    raise ValueError(f"missing dataset input: {required}")
+            for key in ("n_predicates", "n_triples"):
+                if type(config[key]) is not int or config[key] < 1:
+                    raise ValueError(f"{key} must be a positive integer")
+        for name in optimizers:
+            for query_set in sets:
+                if Path(query_set).name != query_set or query_set in (".", ".."):
+                    raise ValueError("query-set names must not contain path separators")
+                queries = config["queries"][query_set]
+                catalog = path(queries["pathrex"])
+                ids = query_ids(catalog)
+                query = catalog if engine == "pathrex" else path(queries["rpqmatrix"])
+                output = output_root / query_set / name / ("res.json" if engine == "pathrex" else "res.txt")
+                metadata = None
+                if engine == "pathrex":
+                    command = [str(binary), "bench", "--graph", str(graph), "--format", "mm", "--queries", str(query), "--algo", "rpqmatrix", "--rpqmatrix-optimizer", name, "--output", str(output), "--runs", str(runs), "--warm-up-runs", str(warmup)]
+                    if settings.get("base_iri"):
+                        command.append("--base-iri=" + settings["base_iri"])
                 else:
-                    metadata["query_id"] = query_path.stem
-                write_run_metadata(output_path, metadata)
-
-
-def main() -> int:
-    args = parse_args()
-    try:
-        config, config_path = load_config(args.config)
-        if args.list:
-            list_config(config)
-            return 0
-
-        dataset_name = args.dataset or os.environ.get(
-            "RPQBENCH_DATASET", config["defaults"]["dataset"]
-        )
-        root = repository_root(config_path, args.root)
-        context, dataset = build_context(
-            config, dataset_name, root, runs=args.runs, warmup_runs=args.warmup_runs,
-            overrides=parse_overrides(args.overrides),
-        )
-        competitors = selected_competitors(config, dataset, args.competitor)
-        semantics = semantic_names(config, args.semantic)
-        dry_run = args.dry_run or os.environ.get("RPQBENCH_DRY_RUN") == "1"
-        validate_paths = not args.no_validate_paths
-
-        failures: list[str] = []
-        for competitor_name, competitor in competitors:
-            for semantic in semantics:
-                try:
-                    query_sets = query_sets_for(args.query_set, semantic, context, validate_paths)
-                except (ConfigError, OSError) as error:
-                    failures.append(f"{competitor_name} {semantic}: {error}")
-                    if not args.keep_going:
-                        raise
-                    print(f"ERROR: {failures[-1]}", file=sys.stderr)
-                    continue
-
-                for query_set in query_sets:
-                    try:
-                        run_one_query_set(
-                            competitor_name, competitor, semantic, query_set, context,
-                            dry_run=dry_run, validate_paths=validate_paths,
-                        )
-                    except (ConfigError, OSError, subprocess.CalledProcessError) as error:
-                        failures.append(f"{competitor_name} {semantic}/{query_set}: {error}")
-                        print(f"ERROR: {failures[-1]}", file=sys.stderr)
-                        if not args.keep_going:
-                            return 1
-
-        if failures:
-            print(f"Completed with {len(failures)} failure(s).", file=sys.stderr)
-            return 1
-        return 0
-    except ConfigError as error:
-        print(f"Configuration error: {error}", file=sys.stderr)
-        return 2
+                    if query_ids(query, converted=True) != ids:
+                        raise ValueError(f"query IDs differ from {catalog}: regenerate {query}")
+                    command = [str(binary), str(dataset), str(query), str(config["n_predicates"]), str(config["n_triples"]), str(runs), str(warmup)]
+                    metadata = {"competitor": name, "query_set": query_set, "query_source_path": str(query), "query_ids": ids, "runs": runs, "warmup_runs": warmup, "total_runs": runs + warmup, "result_path": str(output)}
+                jobs.append((engine, name, query_set, command, output, metadata))
+    # Validate every selected input before loading even the first large graph.
+    outputs = [job[4] for job in jobs]
+    if len(outputs) != len(set(outputs)):
+        raise ValueError("selected jobs have colliding output paths")
+    failures = 0
+    for engine, name, query_set, command, output, metadata in jobs:
+        print(f"[{engine}/{name}] {query_set}; warmup={warmup}, runs={runs}", flush=True)
+        try:
+            run(command, output, metadata, args.dry_run)
+        except (OSError, subprocess.CalledProcessError) as error:
+            print(f"ERROR: {engine}/{name} {query_set}: {error}", flush=True)
+            failures += 1
+            if not args.keep_going:
+                break
+    return int(failures > 0)
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    try:
+        raise SystemExit(main())
+    except (OSError, ValueError, KeyError, TypeError, subprocess.CalledProcessError) as error:
+        raise SystemExit(f"Configuration/preflight error: {error}")
