@@ -1,0 +1,7 @@
+{
+  "pipeline": "RPQBench truncate flags -> deprefix-nt -> remove-dups -> nt-to-mm",
+  "source_rows": 63052,
+  "unique_edges": 61017,
+  "existing_matrix_edge_set_equal": true,
+  "vertex_id_maps_equal": true
+}

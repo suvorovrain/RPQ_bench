@@ -1,0 +1,4795 @@
+{
+  "date": "2026-10-11",
+  "source_sha256": "07e5990f72d74214a192ff066b9a01096ebd731ea703b163f9b22dde44e8a675",
+  "source_rdf_triples": 249739,
+  "projected_source_rows": 63052,
+  "unique_edges": 61017,
+  "vertices": 24225,
+  "local_name_collision_groups": 2777,
+  "engines": {
+    "pathrex": {
+      "basic4": {
+        "engine": "pathrex",
+        "started": "2026-10-18T21:11:56+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          }
+        ],
+        "source_sha": "16f844341bae8a275c263c0bd92c8930c2ebb6b6",
+        "status": "completed"
+      },
+      "smoke6": {
+        "engine": "pathrex",
+        "started": "2026-10-11T21:57:50+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "4",
+            "expected": 51,
+            "actual": 51,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "6",
+            "status": "unsupported",
+            "expected": 2,
+            "note": "optimizer=join",
+            "error": "unsupported path expression: ZeroOrOne (?) is not supported by RPQMatrix"
+          },
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "4",
+            "expected": 51,
+            "actual": 51,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "6",
+            "status": "unsupported",
+            "expected": 2,
+            "note": "optimizer=metaac",
+            "error": "unsupported path expression: ZeroOrOne (?) is not supported by RPQMatrix"
+          },
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "4",
+            "expected": 51,
+            "actual": 51,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "6",
+            "status": "unsupported",
+            "expected": 2,
+            "note": "optimizer=mnc",
+            "error": "unsupported path expression: ZeroOrOne (?) is not supported by RPQMatrix"
+          },
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "4",
+            "expected": 51,
+            "actual": 51,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "6",
+            "status": "unsupported",
+            "expected": 2,
+            "note": "optimizer=hybrid",
+            "error": "unsupported path expression: ZeroOrOne (?) is not supported by RPQMatrix"
+          },
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "4",
+            "expected": 51,
+            "actual": 51,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "6",
+            "status": "unsupported",
+            "expected": 2,
+            "note": "optimizer=pang-hybrid",
+            "error": "unsupported path expression: ZeroOrOne (?) is not supported by RPQMatrix"
+          },
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "4",
+            "expected": 51,
+            "actual": 51,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "6",
+            "status": "unsupported",
+            "expected": 2,
+            "note": "optimizer=sampling",
+            "error": "unsupported path expression: ZeroOrOne (?) is not supported by RPQMatrix"
+          }
+        ],
+        "source_sha": "16f844341bae8a275c263c0bd92c8930c2ebb6b6",
+        "status": "completed_with_gaps"
+      },
+      "workload20": {
+        "engine": "pathrex",
+        "started": "2026-10-11T21:58:46+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "3",
+            "expected": 116,
+            "actual": 116,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "4",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "5",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "6",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "7",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "8",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "9",
+            "expected": 2,
+            "actual": 2,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "10",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "11",
+            "expected": 51,
+            "actual": 51,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "12",
+            "expected": 136,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "mismatch",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "13",
+            "expected": 12,
+            "actual": 12,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "14",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "15",
+            "expected": 374,
+            "actual": 374,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "16",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "17",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "18",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "19",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "20",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=join"
+          },
+          {
+            "id": "1",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "3",
+            "expected": 116,
+            "actual": 116,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "4",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "5",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "6",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "7",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "8",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "9",
+            "expected": 2,
+            "actual": 2,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "10",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "11",
+            "expected": 51,
+            "actual": 51,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "12",
+            "expected": 136,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "mismatch",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "13",
+            "expected": 12,
+            "actual": 12,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "14",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "15",
+            "expected": 374,
+            "actual": 374,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "16",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "17",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "18",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "19",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "20",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=metaac"
+          },
+          {
+            "id": "1",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "3",
+            "expected": 116,
+            "actual": 116,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "4",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "5",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "6",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "7",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "8",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "9",
+            "expected": 2,
+            "actual": 2,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "10",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "11",
+            "expected": 51,
+            "actual": 51,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "12",
+            "expected": 136,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "mismatch",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "13",
+            "expected": 12,
+            "actual": 12,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "14",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "15",
+            "expected": 374,
+            "actual": 374,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "16",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "17",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "18",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "19",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "20",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=mnc"
+          },
+          {
+            "id": "1",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "3",
+            "expected": 116,
+            "actual": 116,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "4",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "5",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "6",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "7",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "8",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "9",
+            "expected": 2,
+            "actual": 2,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "10",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "11",
+            "expected": 51,
+            "actual": 51,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "12",
+            "expected": 136,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "mismatch",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "13",
+            "expected": 12,
+            "actual": 12,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "14",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "15",
+            "expected": 374,
+            "actual": 374,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "16",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "17",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "18",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "19",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "20",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=hybrid"
+          },
+          {
+            "id": "1",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "3",
+            "expected": 116,
+            "actual": 116,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "4",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "5",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "6",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "7",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "8",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "9",
+            "expected": 2,
+            "actual": 2,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "10",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "11",
+            "expected": 51,
+            "actual": 51,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "12",
+            "expected": 136,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "mismatch",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "13",
+            "expected": 12,
+            "actual": 12,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "14",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "15",
+            "expected": 374,
+            "actual": 374,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "16",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "17",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "18",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "19",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "20",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=pang-hybrid"
+          },
+          {
+            "id": "1",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "3",
+            "expected": 116,
+            "actual": 116,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "4",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "5",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "6",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "7",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "8",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "9",
+            "expected": 2,
+            "actual": 2,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "10",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "11",
+            "expected": 51,
+            "actual": 51,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "12",
+            "expected": 136,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "mismatch",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "13",
+            "expected": 12,
+            "actual": 12,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "14",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "15",
+            "expected": 374,
+            "actual": 374,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "16",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "17",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "18",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "19",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          },
+          {
+            "id": "20",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": "optimizer=sampling"
+          }
+        ],
+        "source_sha": "16f844341bae8a275c263c0bd92c8930c2ebb6b6",
+        "status": "completed_with_failures"
+      },
+      "note": "6 optimizers: 5/6 smoke; optional unsupported in RPQMatrix. Workload20 q12: target count=1 vs 136 sources. NFA \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u043e 6/6."
+    },
+    "rpqmatrix": {
+      "basic4": {
+        "engine": "rpqmatrix",
+        "started": "2026-10-18T21:11:31+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "status": "completed"
+      },
+      "smoke6": {
+        "engine": "rpqmatrix",
+        "started": "2026-10-11T21:37:31+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 51,
+            "actual": 51,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 2,
+            "actual": 2,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "status": "completed"
+      },
+      "workload20": {
+        "engine": "rpqmatrix",
+        "started": "2026-10-11T21:58:45+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 116,
+            "actual": 116,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "7",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "8",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "9",
+            "expected": 2,
+            "actual": 2,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "10",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "11",
+            "expected": 51,
+            "actual": 51,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "12",
+            "expected": 136,
+            "actual": 136,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "13",
+            "expected": 12,
+            "actual": 12,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "14",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "15",
+            "expected": 374,
+            "actual": 374,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "16",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "17",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "18",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "19",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "20",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "status": "completed"
+      },
+      "note": "Counts, \u043d\u0435 sets; native variables \u043f\u0435\u0440\u0435\u0438\u043c\u0435\u043d\u043e\u0432\u0430\u043d\u044b \u0432 \u043e\u0434\u043d\u043e\u0441\u0438\u043c\u0432\u043e\u043b\u044c\u043d\u044b\u0435."
+    },
+    "rpqmatrixGB": {
+      "basic4": {
+        "engine": "rpqmatrixGB",
+        "started": "2026-10-18T21:11:56+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "status": "completed"
+      },
+      "smoke6": {
+        "engine": "rpqmatrixGB",
+        "started": "2026-10-11T21:37:31+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 51,
+            "actual": 51,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 2,
+            "actual": 2,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "status": "completed"
+      },
+      "workload20": {
+        "engine": "rpqmatrixGB",
+        "started": "2026-10-11T21:58:45+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 116,
+            "actual": 116,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "7",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "8",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "9",
+            "expected": 2,
+            "actual": 2,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "10",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "11",
+            "expected": 51,
+            "actual": 51,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "12",
+            "expected": 136,
+            "actual": 136,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "13",
+            "expected": 12,
+            "actual": 12,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "14",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "15",
+            "expected": 374,
+            "actual": 374,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "16",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "17",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "18",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "19",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "20",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "status": "completed"
+      },
+      "note": "Counts, \u043d\u0435 sets; .mat = MatrixMarket, \u043d\u0435 binary baseline."
+    },
+    "larpq": {
+      "basic4": {
+        "engine": "larpq",
+        "started": "2026-10-18T21:11:31+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "status": "completed"
+      },
+      "smoke6": {
+        "engine": "larpq",
+        "started": "2026-10-11T22:00:02+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 51,
+            "actual": 51,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 2,
+            "actual": 2,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "status": "completed"
+      },
+      "workload20": {
+        "engine": "larpq",
+        "started": "2026-10-11T21:57:02+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 116,
+            "actual": 116,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "7",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "8",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "9",
+            "expected": 2,
+            "actual": 2,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "10",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "11",
+            "expected": 51,
+            "actual": 51,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "12",
+            "expected": 136,
+            "actual": 136,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "13",
+            "expected": 12,
+            "actual": 12,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "14",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "15",
+            "expected": 374,
+            "actual": 374,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "16",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "17",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "18",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "19",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "20",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "status": "completed"
+      },
+      "note": "Exact sets; \u043d\u043e\u0432\u044b\u0439 minimal C harness, extended any-con format."
+    },
+    "ring": {
+      "basic4": {
+        "engine": "ring",
+        "started": "2026-10-18T21:11:57+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "status": "completed"
+      },
+      "smoke6": {
+        "engine": "ring",
+        "started": "2026-10-11T21:43:10+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 51,
+            "actual": 51,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 2,
+            "actual": 2,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "status": "completed"
+      },
+      "workload20": {
+        "engine": "ring",
+        "started": "2026-10-11T21:58:46+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 116,
+            "actual": 116,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 3,
+            "actual": 3,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "7",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "8",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "9",
+            "expected": 2,
+            "actual": 2,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "10",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "11",
+            "expected": 51,
+            "actual": 51,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "12",
+            "expected": 136,
+            "actual": 136,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "13",
+            "expected": 12,
+            "actual": 12,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "14",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "15",
+            "expected": 374,
+            "actual": 374,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "16",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "17",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "18",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "19",
+            "expected": 1,
+            "actual": 1,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "20",
+            "expected": 0,
+            "actual": 0,
+            "verification": "count_only",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "status": "completed"
+      },
+      "note": "Counts; query file \u0431\u0435\u0437 trailing newline; result bound 1M; Debug source build."
+    },
+    "millenniumdb": {
+      "basic4": {
+        "engine": "millenniumdb",
+        "started": "2026-10-18T21:12:24+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "version": "MillenniumDB v1.0.0",
+        "status": "completed"
+      },
+      "smoke6": {
+        "engine": "millenniumdb",
+        "started": "2026-10-11T21:43:10+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 51,
+            "actual": 51,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 2,
+            "actual": 2,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "version": "MillenniumDB v1.0.0",
+        "status": "completed"
+      },
+      "workload20": {
+        "engine": "millenniumdb",
+        "started": "2026-10-11T21:57:03+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 116,
+            "actual": 116,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "7",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "8",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "9",
+            "expected": 2,
+            "actual": 2,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "10",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "11",
+            "expected": 51,
+            "actual": 51,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "12",
+            "expected": 136,
+            "actual": 136,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "13",
+            "expected": 12,
+            "actual": 12,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "14",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "15",
+            "expected": 374,
+            "actual": 374,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "16",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "17",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "18",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "19",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "20",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "version": "MillenniumDB v1.0.0",
+        "status": "completed"
+      },
+      "note": "Exact sets; RDF mode, source build; all-variable zero-length \u043d\u0435 \u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d."
+    },
+    "jena": {
+      "basic4": {
+        "engine": "jena",
+        "started": "2026-10-18T21:12:25+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "version": "Apache Jena 6.2.0 official binary distribution; Java 21",
+        "status": "completed"
+      },
+      "smoke6": {
+        "engine": "jena",
+        "started": "2026-10-11T21:41:21+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 51,
+            "actual": 51,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 2,
+            "actual": 2,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "version": "Apache Jena 6.2.0 official binary distribution; Java 21",
+        "status": "completed"
+      },
+      "workload20": {
+        "engine": "jena",
+        "started": "2026-10-11T21:57:05+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 116,
+            "actual": 116,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "7",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "8",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "9",
+            "expected": 2,
+            "actual": 2,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "10",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "11",
+            "expected": 51,
+            "actual": 51,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "12",
+            "expected": 136,
+            "actual": 136,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "13",
+            "expected": 12,
+            "actual": 12,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "14",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "15",
+            "expected": 374,
+            "actual": 374,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "16",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "17",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "18",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "19",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "20",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "version": "Apache Jena 6.2.0 official binary distribution; Java 21",
+        "status": "completed"
+      },
+      "note": "Exact sets; TDB2 CLI / Java 21 / official binary, \u043d\u0435 source build."
+    },
+    "blazegraph": {
+      "basic4": {
+        "engine": "blazegraph",
+        "started": "2026-10-18T21:12:32+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "version": "Blazegraph BLAZEGRAPH_2_1_6_RC official release JAR",
+        "image": [
+          "eclipse-temurin@sha256:3e3c176ffed168beb42c607be9bc1639b466cf00261a0fb04425562c9d0c5c2b"
+        ],
+        "status": "completed",
+        "container_state_before_stop": {
+          "Status": "running",
+          "Running": true,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 62851,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-10-18T18:12:32.216589397Z",
+          "FinishedAt": "0001-01-01T00:00:00Z"
+        }
+      },
+      "smoke6": {
+        "engine": "blazegraph",
+        "started": "2026-10-11T22:05:40+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 51,
+            "actual": 51,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 2,
+            "actual": 2,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "version": "Blazegraph BLAZEGRAPH_2_1_6_RC official release JAR",
+        "image": [
+          "eclipse-temurin@sha256:3e3c176ffed168beb42c607be9bc1639b466cf00261a0fb04425562c9d0c5c2b"
+        ],
+        "status": "completed",
+        "container_state_before_stop": {
+          "Status": "running",
+          "Running": true,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 75365,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-10-11T19:05:40.145152527Z",
+          "FinishedAt": "0001-01-01T00:00:00Z"
+        }
+      },
+      "workload20": {
+        "engine": "blazegraph",
+        "started": "2026-10-11T22:05:59+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 116,
+            "actual": 116,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "7",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "8",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "9",
+            "expected": 2,
+            "actual": 2,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "10",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "11",
+            "expected": 51,
+            "actual": 51,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "12",
+            "expected": 136,
+            "actual": 136,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "13",
+            "expected": 12,
+            "actual": 12,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "14",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "15",
+            "expected": 374,
+            "actual": 374,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "16",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "17",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "18",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "19",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "20",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "version": "Blazegraph BLAZEGRAPH_2_1_6_RC official release JAR",
+        "image": [
+          "eclipse-temurin@sha256:3e3c176ffed168beb42c607be9bc1639b466cf00261a0fb04425562c9d0c5c2b"
+        ],
+        "status": "completed",
+        "container_state_before_stop": {
+          "Status": "running",
+          "Running": true,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 75902,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-10-11T19:05:59.801454889Z",
+          "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "journal_restart_check": {
+          "status": "pass",
+          "triples": 61017
+        }
+      },
+      "note": "Exact sets; RC JAR, explicit NanoSparqlServer, journal / no axioms."
+    },
+    "virtuoso": {
+      "basic4": {
+        "engine": "virtuoso",
+        "started": "2026-10-18T21:12:37+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "image": [
+          "openlink/virtuoso-opensource-7@sha256:0dbe1ab4fa0cb7bbafc1f6c0c2b0a5d6f22d918dbd17672f2ddb24580aa6756a"
+        ],
+        "version": "OpenLink Virtuoso Interactive SQL (Virtuoso)\nVersion 07.20.3243 as of Aug  5 2026\nType HELP; for help and EXIT; to exit.\nConnected to OpenLink Virtuoso\nDriver: 07.20.3243 OpenLink Virtuoso ODBC Driver\nREPORT\nVARCHAR\n_______________________________________________________________________________\n\nOpenLink Virtuoso  Server\nVersion 07.20.3243-pthreads for Linux as of Aug  5 2026 (8439c5e52f)\nStarted on: 2026-10-18 18:12 GMT+0 (up 00:00)\nCPU: 0.00% RSS: 115MB VSZ: 673MB PF: 50\n \nDisk space:\n  /opt/v",
+        "status": "completed",
+        "container_state_before_stop": {
+          "Status": "running",
+          "Running": true,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 63147,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-10-18T18:12:37.416374813Z",
+          "FinishedAt": "0001-01-01T00:00:00Z"
+        }
+      },
+      "smoke6": {
+        "engine": "virtuoso",
+        "started": "2026-10-11T21:42:08+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 51,
+            "actual": 51,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 2,
+            "actual": 2,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "image": [
+          "openlink/virtuoso-opensource-7@sha256:0dbe1ab4fa0cb7bbafc1f6c0c2b0a5d6f22d918dbd17672f2ddb24580aa6756a"
+        ],
+        "version": "OpenLink Virtuoso Interactive SQL (Virtuoso)\nVersion 07.20.3243 as of Aug  5 2026\nType HELP; for help and EXIT; to exit.\nConnected to OpenLink Virtuoso\nDriver: 07.20.3243 OpenLink Virtuoso ODBC Driver\nREPORT\nVARCHAR\n_______________________________________________________________________________\n\nOpenLink Virtuoso  Server\nVersion 07.20.3243-pthreads for Linux as of Aug  5 2026 (8439c5e52f)\nStarted on: 2026-10-11 18:42 GMT+0 (up 00:00)\nCPU: 0.01% RSS: 116MB VSZ: 673MB PF: 16\n \nDisk space:\n  /opt/v",
+        "status": "completed"
+      },
+      "workload20": {
+        "engine": "virtuoso",
+        "started": "2026-10-11T21:57:30+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 116,
+            "actual": 116,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "7",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "8",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "9",
+            "expected": 2,
+            "actual": 2,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "10",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "11",
+            "expected": 51,
+            "actual": 51,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "12",
+            "expected": 136,
+            "actual": 136,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "13",
+            "expected": 12,
+            "actual": 12,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "14",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "15",
+            "expected": 374,
+            "actual": 374,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "16",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "17",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "18",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "19",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "20",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "image": [
+          "openlink/virtuoso-opensource-7@sha256:0dbe1ab4fa0cb7bbafc1f6c0c2b0a5d6f22d918dbd17672f2ddb24580aa6756a"
+        ],
+        "version": "OpenLink Virtuoso Interactive SQL (Virtuoso)\nVersion 07.20.3243 as of Aug  5 2026\nType HELP; for help and EXIT; to exit.\nConnected to OpenLink Virtuoso\nDriver: 07.20.3243 OpenLink Virtuoso ODBC Driver\nREPORT\nVARCHAR\n_______________________________________________________________________________\n\nOpenLink Virtuoso  Server\nVersion 07.20.3243-pthreads for Linux as of Aug  5 2026 (8439c5e52f)\nStarted on: 2026-10-11 18:57 GMT+0 (up 00:00)\nCPU: 0.01% RSS: 114MB VSZ: 673MB PF: 6\n \nDisk space:\n  /opt/vi",
+        "status": "completed",
+        "container_state_before_stop": {
+          "Status": "running",
+          "Running": true,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 72600,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-10-11T18:57:30.945299276Z",
+          "FinishedAt": "0001-01-01T00:00:00Z"
+        }
+      },
+      "note": "Exact sets; named graph \u044f\u0432\u043d\u043e \u0443\u043a\u0430\u0437\u0430\u043d \u0432 FROM."
+    },
+    "falkordb": {
+      "basic4": {
+        "engine": "falkordb",
+        "started": "2026-10-18T21:13:14+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset"
+          }
+        ],
+        "image": [
+          "falkordb/falkordb@sha256:107455e862a824e45e8e9f5a7fbfdf5e00a08b14e13eae2577c72fd9e3f59ba6"
+        ],
+        "version": "[{b'name': b'graph', b'ver': 60002, b'path': b'/var/lib/falkordb/bin/falkordb.so', b'args': [b'MAX_QUEUED_QUERIES', b'25', b'TIMEOUT', b'1000', b'RESULTSET_SIZE', b'10000']}, {b'name': b'vectorset', b'ver': 1, b'path': b'', b'args': []}]",
+        "loaded_edges": 61017,
+        "status": "completed",
+        "container_state_before_stop": {
+          "Status": "running",
+          "Running": true,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 64572,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-10-18T18:13:14.218631441Z",
+          "FinishedAt": "0001-01-01T00:00:00Z"
+        }
+      },
+      "smoke6": {
+        "engine": "falkordb",
+        "started": "2026-10-11T21:37:33+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset"
+          },
+          {
+            "id": "4",
+            "status": "no_translation",
+            "note": "Compound closure has no verified direct translation"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset"
+          },
+          {
+            "id": "6",
+            "expected": 2,
+            "actual": 2,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset"
+          }
+        ],
+        "image": [
+          "falkordb/falkordb@sha256:107455e862a824e45e8e9f5a7fbfdf5e00a08b14e13eae2577c72fd9e3f59ba6"
+        ],
+        "version": "[{b'name': b'graph', b'ver': 60002, b'path': b'/var/lib/falkordb/bin/falkordb.so', b'args': [b'MAX_QUEUED_QUERIES', b'25', b'TIMEOUT', b'1000', b'RESULTSET_SIZE', b'10000']}, {b'name': b'vectorset', b'ver': 1, b'path': b'', b'args': []}]",
+        "loaded_edges": 61017,
+        "status": "completed_with_gaps"
+      },
+      "workload20": null,
+      "note": "5 exact sets; q4 no_translation, \u043d\u0435 \u0442\u0435\u0441\u0442 unsupported \u0441\u0438\u043d\u0442\u0430\u043a\u0441\u0438\u0441\u0430."
+    },
+    "memgraph": {
+      "basic4": {
+        "engine": "memgraph",
+        "started": "2026-10-18T21:13:10+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset, not general WALK RPQ"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset, not general WALK RPQ"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset, not general WALK RPQ"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset, not general WALK RPQ"
+          }
+        ],
+        "image": [
+          "memgraph/memgraph@sha256:302a6622a9bd28191818801b7ea6e5931bc1cd0a0d1646333269a2237b1bdcb0"
+        ],
+        "version": [
+          {
+            "version": "3.13.2"
+          }
+        ],
+        "loaded_edges": 61017,
+        "status": "completed",
+        "container_state_before_stop": {
+          "Status": "running",
+          "Running": true,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 64286,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-10-18T18:13:10.546162479Z",
+          "FinishedAt": "0001-01-01T00:00:00Z"
+        }
+      },
+      "smoke6": {
+        "engine": "memgraph",
+        "started": "2026-10-11T21:43:01+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset, not general WALK RPQ"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset, not general WALK RPQ"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset, not general WALK RPQ"
+          },
+          {
+            "id": "4",
+            "status": "no_translation",
+            "note": "Compound closure has no verified direct translation"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset, not general WALK RPQ"
+          },
+          {
+            "id": "6",
+            "expected": 2,
+            "actual": 2,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset, not general WALK RPQ"
+          }
+        ],
+        "image": [
+          "memgraph/memgraph@sha256:302a6622a9bd28191818801b7ea6e5931bc1cd0a0d1646333269a2237b1bdcb0"
+        ],
+        "version": [
+          {
+            "version": "3.13.2"
+          }
+        ],
+        "loaded_edges": 61017,
+        "status": "completed_with_gaps"
+      },
+      "workload20": null,
+      "note": "5 exact sets; BFS star \u0442\u0440\u0435\u0431\u0443\u0435\u0442 UNION \u0441 zero-length source; q4 no_translation."
+    },
+    "neo4j": {
+      "basic4": {
+        "engine": "neo4j",
+        "started": "2026-10-18T21:12:45+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset, not general WALK RPQ"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset, not general WALK RPQ"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset, not general WALK RPQ"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset, not general WALK RPQ"
+          }
+        ],
+        "image": [
+          "neo4j@sha256:c7d25c0eeebfe125718d58b72ed5d663c85d0479047733845eb2237c67ce8069"
+        ],
+        "version": [
+          {
+            "name": "Neo4j Kernel",
+            "versions": [
+              "5.26.31"
+            ],
+            "edition": "community"
+          }
+        ],
+        "loaded_edges": 61017,
+        "status": "completed",
+        "container_state_before_stop": {
+          "Status": "running",
+          "Running": true,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 63804,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-10-18T18:12:46.389349572Z",
+          "FinishedAt": "0001-01-01T00:00:00Z"
+        }
+      },
+      "smoke6": {
+        "engine": "neo4j",
+        "started": "2026-10-11T21:37:37+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset, not general WALK RPQ"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset, not general WALK RPQ"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset, not general WALK RPQ"
+          },
+          {
+            "id": "4",
+            "status": "no_translation",
+            "note": "Compound closure has no verified direct translation"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset, not general WALK RPQ"
+          },
+          {
+            "id": "6",
+            "expected": 2,
+            "actual": 2,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset, not general WALK RPQ"
+          }
+        ],
+        "image": [
+          "neo4j@sha256:c7d25c0eeebfe125718d58b72ed5d663c85d0479047733845eb2237c67ce8069"
+        ],
+        "version": [
+          {
+            "name": "Neo4j Kernel",
+            "versions": [
+              "5.26.31"
+            ],
+            "edition": "community"
+          }
+        ],
+        "loaded_edges": 61017,
+        "status": "completed_with_gaps"
+      },
+      "workload20": null,
+      "note": "5 exact sets; Neo4j 5.26 Community, \u043d\u0435 Cypher 25; q4 no_translation."
+    },
+    "kuzu": {
+      "basic4": {
+        "engine": "kuzu",
+        "started": "2026-10-18T21:11:58+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset; default recursion cap applies"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset; default recursion cap applies"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset; default recursion cap applies"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset; default recursion cap applies"
+          }
+        ],
+        "version": "0.11.3",
+        "status": "completed"
+      },
+      "smoke6": {
+        "engine": "kuzu",
+        "started": "2026-10-11T21:37:29+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset; default recursion cap applies"
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset; default recursion cap applies"
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset; default recursion cap applies"
+          },
+          {
+            "id": "4",
+            "status": "no_translation",
+            "note": "Compound closure has no verified direct translation"
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset; default recursion cap applies"
+          },
+          {
+            "id": "6",
+            "expected": 2,
+            "actual": 2,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": "Native pattern subset; default recursion cap applies"
+          }
+        ],
+        "version": "0.11.3",
+        "status": "completed_with_gaps"
+      },
+      "workload20": null,
+      "note": "5 exact sets; 0.11.3; default cap 30, q4 no_translation."
+    },
+    "postgres": {
+      "basic4": {
+        "engine": "postgres",
+        "started": "2026-10-18T21:12:22+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "image": [
+          "postgres@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336"
+        ],
+        "version": "PostgreSQL 18.6 (Debian 18.6-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+        "status": "completed",
+        "container_state_before_stop": {
+          "Status": "running",
+          "Running": true,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 61993,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-10-18T18:12:22.553477584Z",
+          "FinishedAt": "0001-01-01T00:00:00Z"
+        }
+      },
+      "smoke6": {
+        "engine": "postgres",
+        "started": "2026-10-11T21:37:28+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 51,
+            "actual": 51,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 2,
+            "actual": 2,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "image": [
+          "postgres@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336"
+        ],
+        "version": "PostgreSQL 18.6 (Debian 18.6-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+        "status": "completed"
+      },
+      "workload20": {
+        "engine": "postgres",
+        "started": "2026-10-11T21:57:03+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 116,
+            "actual": 116,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "7",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "8",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "9",
+            "expected": 2,
+            "actual": 2,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "10",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "11",
+            "expected": 51,
+            "actual": 51,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "12",
+            "expected": 136,
+            "actual": 136,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "13",
+            "expected": 12,
+            "actual": 12,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "14",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "15",
+            "expected": 374,
+            "actual": 374,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "16",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "17",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "18",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "19",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "20",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "image": [
+          "postgres@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336"
+        ],
+        "version": "PostgreSQL 18.6 (Debian 18.6-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+        "status": "completed",
+        "container_state_before_stop": {
+          "Status": "running",
+          "Running": true,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 69392,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-10-11T18:57:03.336973643Z",
+          "FinishedAt": "0001-01-01T00:00:00Z"
+        }
+      },
+      "note": "Exact sets; recursive UNION / product states."
+    },
+    "duckdb": {
+      "basic4": {
+        "engine": "duckdb",
+        "started": "2026-10-18T21:11:57+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "version": "1.5.6",
+        "status": "completed"
+      },
+      "smoke6": {
+        "engine": "duckdb",
+        "started": "2026-10-11T22:07:43+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 56,
+            "actual": 56,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 51,
+            "actual": 51,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 2,
+            "actual": 2,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "version": "1.5.6",
+        "status": "completed"
+      },
+      "workload20": {
+        "engine": "duckdb",
+        "started": "2026-10-11T21:57:03+0300",
+        "checks": [
+          {
+            "id": "1",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "2",
+            "expected": 109,
+            "actual": 109,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "3",
+            "expected": 116,
+            "actual": 116,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "4",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "5",
+            "expected": 3,
+            "actual": 3,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "6",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "7",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "8",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "9",
+            "expected": 2,
+            "actual": 2,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "10",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "11",
+            "expected": 51,
+            "actual": 51,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "12",
+            "expected": 136,
+            "actual": 136,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "13",
+            "expected": 12,
+            "actual": 12,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "14",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "15",
+            "expected": 374,
+            "actual": 374,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "16",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "17",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "18",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "19",
+            "expected": 1,
+            "actual": 1,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          },
+          {
+            "id": "20",
+            "expected": 0,
+            "actual": 0,
+            "verification": "endpoint_set",
+            "status": "pass",
+            "note": null
+          }
+        ],
+        "version": "1.5.6",
+        "status": "completed"
+      },
+      "note": "Exact sets; recursive UNION / product states, \u0431\u0435\u0437 DuckPGQ."
+    }
+  },
+  "pathrex_nfarpq_smoke6": [
+    {
+      "query_index": 0,
+      "query_id": "1",
+      "query_text": "<Article1> <creator> ?t",
+      "algorithms": {
+        "nfarpq": {
+          "status": "ok",
+          "result_count": 56
+        }
+      }
+    },
+    {
+      "query_index": 1,
+      "query_id": "2",
+      "query_text": "<Article1> <references>/<cite>/<creator> ?t",
+      "algorithms": {
+        "nfarpq": {
+          "status": "ok",
+          "result_count": 109
+        }
+      }
+    },
+    {
+      "query_index": 2,
+      "query_id": "3",
+      "query_text": "<Tashiya_Marrable> (<coauthor>)* ?t",
+      "algorithms": {
+        "nfarpq": {
+          "status": "ok",
+          "result_count": 3
+        }
+      }
+    },
+    {
+      "query_index": 3,
+      "query_id": "4",
+      "query_text": "<Article1> (<references>/<cite>)* ?t",
+      "algorithms": {
+        "nfarpq": {
+          "status": "ok",
+          "result_count": 51
+        }
+      }
+    },
+    {
+      "query_index": 4,
+      "query_id": "5",
+      "query_text": "<1940> (<editor>|<creator>) ?t",
+      "algorithms": {
+        "nfarpq": {
+          "status": "ok",
+          "result_count": 1
+        }
+      }
+    },
+    {
+      "query_index": 5,
+      "query_id": "6",
+      "query_text": "<Tashiya_Marrable> (<coauthor>)? ?t",
+      "algorithms": {
+        "nfarpq": {
+          "status": "ok",
+          "result_count": 2
+        }
+      }
+    }
+  ]
+}

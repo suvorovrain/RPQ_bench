@@ -1,0 +1,78 @@
+{
+  "engine": "falkordb",
+  "image": "falkordb/falkordb@sha256:107455e862a824e45e8e9f5a7fbfdf5e00a08b14e13eae2577c72fd9e3f59ba6",
+  "queries": {
+    "repeat_edge": {
+      "query": "MATCH (s:Node {name:'F'})-[:p]->()-[:q]->()-[:p]->(t) RETURN DISTINCT t.name",
+      "rows": [
+        [
+          "G"
+        ]
+      ]
+    },
+    "repeat_edge_split_match": {
+      "query": "MATCH (s:Node {name:'F'})-[:p]->(u) MATCH (u)-[:q]->(v) MATCH (v)-[:p]->(t) RETURN DISTINCT t.name",
+      "rows": [
+        [
+          "G"
+        ]
+      ]
+    },
+    "diamond": {
+      "query": "MATCH (s:Node {name:'A'})-[:p]->()-[:p]->(t) RETURN DISTINCT t.name",
+      "rows": [
+        [
+          "D"
+        ]
+      ]
+    },
+    "any_con": {
+      "query": "MATCH (s)-[:p]->(t:Node {name:'D'}) RETURN DISTINCT s.name",
+      "rows": [
+        [
+          "B"
+        ],
+        [
+          "C"
+        ]
+      ]
+    },
+    "any_any": {
+      "query": "MATCH (s)-[:p]->(t) RETURN DISTINCT s.name,t.name",
+      "rows": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "A",
+          "C"
+        ],
+        [
+          "B",
+          "D"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "F",
+          "G"
+        ]
+      ]
+    },
+    "same_variable": {
+      "query": "MATCH (s)-[:p]->(s) RETURN DISTINCT s.name",
+      "rows": []
+    },
+    "zero_length": {
+      "query": "MATCH (s:Node {name:'E'})-[:p*0..]->(t) RETURN DISTINCT t.name",
+      "rows": [
+        [
+          "E"
+        ]
+      ]
+    }
+  }
+}

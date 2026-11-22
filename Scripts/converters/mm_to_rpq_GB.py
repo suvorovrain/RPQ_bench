@@ -8,7 +8,7 @@ import shutil
 from pathlib import Path
 
 
-DEFAULT_BASE_NAME = "rpqbench_250k_orig.nt.dat"
+DEFAULT_BASE_NAME = "rpqbench.nt.dat"
 
 
 def numbered_matrix_paths(mm_dir: Path) -> list[Path]:

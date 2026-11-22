@@ -1,0 +1,224 @@
+{
+  "smoke": [
+    {
+      "engine": "blazegraph",
+      "status": "completed",
+      "checks": 4,
+      "passed": 4,
+      "source_sha": null,
+      "image": [
+        "eclipse-temurin@sha256:3e3c176ffed168beb42c607be9bc1639b466cf00261a0fb04425562c9d0c5c2b"
+      ],
+      "version": "Blazegraph BLAZEGRAPH_2_1_6_RC official release JAR"
+    },
+    {
+      "engine": "duckdb",
+      "status": "completed",
+      "checks": 4,
+      "passed": 4,
+      "source_sha": null,
+      "image": null,
+      "version": "1.5.6"
+    },
+    {
+      "engine": "falkordb",
+      "status": "completed",
+      "checks": 4,
+      "passed": 4,
+      "source_sha": null,
+      "image": [
+        "falkordb/falkordb@sha256:107455e862a824e45e8e9f5a7fbfdf5e00a08b14e13eae2577c72fd9e3f59ba6"
+      ],
+      "version": "[{b'name': b'graph', b'ver': 60002, b'path': b'/var/lib/falkordb/bin/falkordb.so', b'args': [b'MAX_QUEUED_QUERIES', b'25', b'TIMEOUT', b'1000', b'RESULTSET_SIZE', b'10000']}, {b'name': b'vectorset', b'ver': 1, b'path': b'', b'args': []}]"
+    },
+    {
+      "engine": "jena",
+      "status": "completed",
+      "checks": 4,
+      "passed": 4,
+      "source_sha": null,
+      "image": null,
+      "version": "Apache Jena 6.2.0 official binary distribution; Java 21"
+    },
+    {
+      "engine": "kuzu",
+      "status": "completed",
+      "checks": 4,
+      "passed": 4,
+      "source_sha": null,
+      "image": null,
+      "version": "0.11.3"
+    },
+    {
+      "engine": "larpq",
+      "status": "completed",
+      "checks": 4,
+      "passed": 4,
+      "source_sha": null,
+      "image": null,
+      "version": null
+    },
+    {
+      "engine": "memgraph",
+      "status": "completed",
+      "checks": 4,
+      "passed": 4,
+      "source_sha": null,
+      "image": [
+        "memgraph/memgraph@sha256:302a6622a9bd28191818801b7ea6e5931bc1cd0a0d1646333269a2237b1bdcb0"
+      ],
+      "version": [
+        {
+          "version": "3.13.2"
+        }
+      ]
+    },
+    {
+      "engine": "millenniumdb",
+      "status": "completed",
+      "checks": 4,
+      "passed": 4,
+      "source_sha": null,
+      "image": null,
+      "version": "MillenniumDB v1.0.0"
+    },
+    {
+      "engine": "neo4j",
+      "status": "completed",
+      "checks": 4,
+      "passed": 4,
+      "source_sha": null,
+      "image": [
+        "neo4j@sha256:c7d25c0eeebfe125718d58b72ed5d663c85d0479047733845eb2237c67ce8069"
+      ],
+      "version": [
+        {
+          "name": "Neo4j Kernel",
+          "versions": [
+            "5.26.31"
+          ],
+          "edition": "community"
+        }
+      ]
+    },
+    {
+      "engine": "pathrex",
+      "status": "completed",
+      "checks": 8,
+      "passed": 8,
+      "source_sha": "50831d400210e69ce898799654217e7043e31ca9",
+      "image": null,
+      "version": null
+    },
+    {
+      "engine": "postgres",
+      "status": "completed",
+      "checks": 4,
+      "passed": 4,
+      "source_sha": null,
+      "image": [
+        "postgres@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336"
+      ],
+      "version": "PostgreSQL 18.6 (Debian 18.6-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit"
+    },
+    {
+      "engine": "ring",
+      "status": "completed",
+      "checks": 4,
+      "passed": 4,
+      "source_sha": null,
+      "image": null,
+      "version": null
+    },
+    {
+      "engine": "rpqmatrix",
+      "status": "completed",
+      "checks": 4,
+      "passed": 4,
+      "source_sha": null,
+      "image": null,
+      "version": null
+    },
+    {
+      "engine": "rpqmatrixGB",
+      "status": "completed",
+      "checks": 4,
+      "passed": 4,
+      "source_sha": null,
+      "image": null,
+      "version": null
+    },
+    {
+      "engine": "virtuoso",
+      "status": "completed",
+      "checks": 4,
+      "passed": 4,
+      "source_sha": null,
+      "image": [
+        "openlink/virtuoso-opensource-7@sha256:0dbe1ab4fa0cb7bbafc1f6c0c2b0a5d6f22d918dbd17672f2ddb24580aa6756a"
+      ],
+      "version": "OpenLink Virtuoso Interactive SQL (Virtuoso)\nVersion 07.20.3243 as of Aug  5 2026\nType HELP; for help and EXIT; to exit.\nConnected to OpenLink Virtuoso\nDriver: 07.20.3243 OpenLink Virtuoso ODBC Driver\nREPORT\nVARCHAR\n_______________________________________________________________________________\n\nOpenLink Virtuoso  Server\nVersion 07.20.3243-pthreads for Linux as of Aug  5 2026 (8439c5e52f)\nStarted on: 2026-11-22 06:56 GMT+0 (up 00:00)\nCPU: 0.01% RSS: 116MB VSZ: 673MB PF: 0\n \nDisk space:\n  /opt/vi"
+    }
+  ],
+  "runner_unit_tests": 5,
+  "optimized_python_unit_tests": 5,
+  "note": "Functional Basic4 validation on installed runtimes; not a performance comparison or a build of every pinned source revision.",
+  "pathrex_tests": {
+    "passed": 173,
+    "ignored": 4,
+    "native_linked": true,
+    "commit": "9aee0d5"
+  },
+  "benchmark": {
+    "runs": 4,
+    "warmups": 1,
+    "engines": {
+      "larpq": 16,
+      "rpqmatrix": 16,
+      "rpqmatrixGB": 16,
+      "pathrex": 16,
+      "ring": 16,
+      "duckdb": 16,
+      "kuzu": 16,
+      "jena": 16,
+      "postgres": 16,
+      "millenniumdb": 16,
+      "blazegraph": 16,
+      "virtuoso": 16,
+      "neo4j": 16,
+      "memgraph": 16,
+      "falkordb": 16
+    },
+    "measured_samples": 240,
+    "performance_comparison": false
+  },
+  "resume_checks": {
+    "identical_configuration_skips_completed": true,
+    "changed_runs_rejected_without_overwrite": true
+  },
+  "plots": {
+    "status": "ok",
+    "files": [
+      "distributions.png",
+      "histogram.png",
+      "histogram.svg",
+      "report.html",
+      "samples.csv",
+      "summary.csv",
+      "summary.json",
+      "table.png",
+      "table.xlsx"
+    ]
+  },
+  "clean_checkout_unit_tests": 5,
+  "artifact_urls": {
+    "jena.tar.gz": 200,
+    "blazegraph.jar": 200
+  },
+  "rust_clippy": {
+    "status": "passed",
+    "rust_only": true,
+    "DOCS_RS": true,
+    "native_build_and_tests_verified_separately": true
+  }
+}

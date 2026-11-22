@@ -1,0 +1,74 @@
+{
+  "engine": "neo4j",
+  "image": "neo4j@sha256:c7d25c0eeebfe125718d58b72ed5d663c85d0479047733845eb2237c67ce8069",
+  "queries": {
+    "repeat_edge": {
+      "query": "MATCH (s:Node {name:'F'})-[:p]->()-[:q]->()-[:p]->(t) RETURN DISTINCT t.name",
+      "rows": []
+    },
+    "repeat_edge_split_match": {
+      "query": "MATCH (s:Node {name:'F'})-[:p]->(u) MATCH (u)-[:q]->(v) MATCH (v)-[:p]->(t) RETURN DISTINCT t.name",
+      "rows": [
+        [
+          "G"
+        ]
+      ]
+    },
+    "diamond": {
+      "query": "MATCH (s:Node {name:'A'})-[:p]->()-[:p]->(t) RETURN DISTINCT t.name",
+      "rows": [
+        [
+          "D"
+        ]
+      ]
+    },
+    "any_con": {
+      "query": "MATCH (s)-[:p]->(t:Node {name:'D'}) RETURN DISTINCT s.name",
+      "rows": [
+        [
+          "B"
+        ],
+        [
+          "C"
+        ]
+      ]
+    },
+    "any_any": {
+      "query": "MATCH (s)-[:p]->(t) RETURN DISTINCT s.name,t.name",
+      "rows": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "A",
+          "C"
+        ],
+        [
+          "B",
+          "D"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "F",
+          "G"
+        ]
+      ]
+    },
+    "same_variable": {
+      "query": "MATCH (s)-[:p]->(s) RETURN DISTINCT s.name",
+      "rows": []
+    },
+    "zero_length": {
+      "query": "MATCH (s:Node {name:'E'})-[:p*0..]->(t) RETURN DISTINCT t.name",
+      "rows": [
+        [
+          "E"
+        ]
+      ]
+    }
+  }
+}
