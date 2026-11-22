@@ -1,0 +1,15 @@
+.vscode/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+
+/Results/
+/Scripts/benchmarks/benchmark_results/
+
+# Benchmark inputs stay on the machine where they are generated or prepared.
+/Datasets/*/
+/Queries/*/
+
+/t.txt

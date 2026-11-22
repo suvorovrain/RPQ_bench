@@ -1,0 +1,74 @@
+{
+  "engine": "memgraph",
+  "image": "memgraph/memgraph@sha256:302a6622a9bd28191818801b7ea6e5931bc1cd0a0d1646333269a2237b1bdcb0",
+  "queries": {
+    "repeat_edge": {
+      "query": "MATCH (s:Node {name:'F'})-[:p]->()-[:q]->()-[:p]->(t) RETURN DISTINCT t.name",
+      "rows": []
+    },
+    "repeat_edge_split_match": {
+      "query": "MATCH (s:Node {name:'F'})-[:p]->(u) MATCH (u)-[:q]->(v) MATCH (v)-[:p]->(t) RETURN DISTINCT t.name",
+      "rows": [
+        [
+          "G"
+        ]
+      ]
+    },
+    "diamond": {
+      "query": "MATCH (s:Node {name:'A'})-[:p]->()-[:p]->(t) RETURN DISTINCT t.name",
+      "rows": [
+        [
+          "D"
+        ]
+      ]
+    },
+    "any_con": {
+      "query": "MATCH (s)-[:p]->(t:Node {name:'D'}) RETURN DISTINCT s.name",
+      "rows": [
+        [
+          "B"
+        ],
+        [
+          "C"
+        ]
+      ]
+    },
+    "any_any": {
+      "query": "MATCH (s)-[:p]->(t) RETURN DISTINCT s.name,t.name",
+      "rows": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "A",
+          "C"
+        ],
+        [
+          "B",
+          "D"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "F",
+          "G"
+        ]
+      ]
+    },
+    "same_variable": {
+      "query": "MATCH (s)-[:p]->(s) RETURN DISTINCT s.name",
+      "rows": []
+    },
+    "zero_length": {
+      "query": "MATCH (s:Node {name:'E'})-[:p*0..]->(t) RETURN DISTINCT t.name",
+      "rows": [
+        [
+          "E"
+        ]
+      ]
+    }
+  }
+}

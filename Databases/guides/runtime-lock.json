@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-11",
+  "images": {
+    "postgres:18": "postgres@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336",
+    "neo4j:5.26-community": "neo4j@sha256:c7d25c0eeebfe125718d58b72ed5d663c85d0479047733845eb2237c67ce8069",
+    "memgraph/memgraph:latest": "memgraph/memgraph@sha256:302a6622a9bd28191818801b7ea6e5931bc1cd0a0d1646333269a2237b1bdcb0",
+    "falkordb/falkordb:latest": "falkordb/falkordb@sha256:107455e862a824e45e8e9f5a7fbfdf5e00a08b14e13eae2577c72fd9e3f59ba6",
+    "eclipse-temurin:21-jdk": "eclipse-temurin@sha256:3e3c176ffed168beb42c607be9bc1639b466cf00261a0fb04425562c9d0c5c2b",
+    "openlink/virtuoso-opensource-7:latest": "openlink/virtuoso-opensource-7@sha256:0dbe1ab4fa0cb7bbafc1f6c0c2b0a5d6f22d918dbd17672f2ddb24580aa6756a"
+  },
+  "artifacts": {
+    "jena.tar.gz": {
+      "url": "https://dlcdn.apache.org/jena/binaries/apache-jena-6.2.0.tar.gz",
+      "sha256": "14c12ef4aa2f0078a473be4b10b015e0e0b85e767d6867e8581679de8fec3f6e"
+    },
+    "blazegraph.jar": {
+      "url": "https://github.com/blazegraph/database/releases/download/BLAZEGRAPH_2_1_6_RC/blazegraph.jar",
+      "sha256": "930c38b5bce7c0ae99701c1f6ef3057c52f3f385d938e1397a3e05561c7df5de"
+    }
+  },
+  "sources": {
+    "sdsl": "8a1e8be6c4a49f8f31344d30aa6f71f15d565071",
+    "larpq": "1efdd6cd21cca1dc6c7ddfcfbba0ed66bdcd5180",
+    "millenniumdb": "978cf2b5514878b2430dbf74c3e57f7c5dda8af9",
+    "ring": "13bb701e4bef8248ffffd135c0253cb0aa083ca7",
+    "pathrex": "16f844341bae8a275c263c0bd92c8930c2ebb6b6",
+    "rpqmatrix": "6b658b391d33f5eeeeaae94f85fe0d0b490f26c8",
+    "rpqmatrixGB": "41c4650a771047ac7eaabf4d07a2047ec5fff52e"
+  },
+  "native_binaries": {
+    "pathrex": {
+      "path": "Databases/pathrex/target/release/pathrex",
+      "sha256": "af0dfd847fc9db462ae511f192b77d5c12b766ade1f2015bc92f8c7a78d0f312"
+    },
+    "rpqmatrix": {
+      "path": "Databases/rpq-matrix/build/baseline_query",
+      "sha256": "e699c2b4614b0f3fb4f61e863346413a7c9aa5e15189ed2ea91c9a27fa2089c3"
+    },
+    "rpqmatrixGB": {
+      "path": "Databases/rpq-matrix_GB/build/baselineGB_query",
+      "sha256": "4ba68ce2312ae2734627ed8e13193f9ce760dddad5a5f91150b10176a1a18a20"
+    },
+    "larpq": {
+      "path": "Results/competitors_250k/build/larpq-smoke",
+      "sha256": "3d3524f3cea559cdd4067a5e800e55d6ed75196cd32601349b580293e1c20379"
+    },
+    "millenniumdb": {
+      "path": "Results/competitors_250k/build/millenniumdb/bin/mdb",
+      "sha256": "5242a150313cd07072136e795923c43a6d4bc8083eb8c86ab55023c4e26ea57c"
+    },
+    "ring_build": {
+      "path": "Results/competitors_250k/build/ring/build-index-basic",
+      "sha256": "d43c1e189d26aa668d9e684755e4136a34458d433890a537ebd6d27dc9508944"
+    },
+    "ring_query": {
+      "path": "Results/competitors_250k/build/ring/query-index-basic",
+      "sha256": "a3f903c97ce61226753ad2001974e7c12a9f0c0d8849e7e856914e8ac57181ab"
+    }
+  }
+}

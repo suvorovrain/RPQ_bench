@@ -16,3 +16,40 @@
 [submodule "vendor/larpq"]
 	path = vendor/larpq
 	url = https://github.com/SparseLinearAlgebra/la-rpq.git
+[submodule "Databases/larpq"]
+	path = Databases/larpq
+	url = https://github.com/SparseLinearAlgebra/LAGraph.git
+	branch = 2-rpq
+[submodule "Databases/falkordb"]
+	path = Databases/falkordb
+	url = https://github.com/FalkorDB/FalkorDB.git
+[submodule "Databases/millenniumdb"]
+	path = Databases/millenniumdb
+	url = https://github.com/MillenniumDB/MillenniumDB.git
+[submodule "Databases/duckdb"]
+	path = Databases/duckdb
+	url = https://github.com/duckdb/duckdb.git
+[submodule "Databases/memgraph"]
+	path = Databases/memgraph
+	url = https://github.com/memgraph/memgraph.git
+[submodule "Databases/neo4j"]
+	path = Databases/neo4j
+	url = https://github.com/neo4j/neo4j.git
+[submodule "Databases/kuzu"]
+	path = Databases/kuzu
+	url = https://github.com/kuzudb/kuzu.git
+[submodule "Databases/blazegraph"]
+	path = Databases/blazegraph
+	url = https://github.com/blazegraph/database.git
+[submodule "Databases/jena"]
+	path = Databases/jena
+	url = https://github.com/apache/jena.git
+[submodule "Databases/virtuoso"]
+	path = Databases/virtuoso
+	url = https://github.com/openlink/virtuoso-opensource.git
+[submodule "Databases/ring-rpq"]
+	path = Databases/ring-rpq
+	url = https://github.com/adriangbrandon/Ring-RPQ.git
+[submodule "Databases/postgres"]
+	path = Databases/postgres
+	url = https://github.com/postgres/postgres.git

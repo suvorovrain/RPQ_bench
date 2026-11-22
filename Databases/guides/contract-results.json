@@ -1,0 +1,635 @@
+{
+  "date": "2026-10-11",
+  "graph": {
+    "vertices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "edges": [
+      [
+        "A",
+        "p",
+        "B"
+      ],
+      [
+        "A",
+        "p",
+        "C"
+      ],
+      [
+        "B",
+        "p",
+        "D"
+      ],
+      [
+        "C",
+        "p",
+        "D"
+      ],
+      [
+        "B",
+        "q",
+        "A"
+      ],
+      [
+        "C",
+        "q",
+        "A"
+      ],
+      [
+        "E",
+        "z",
+        "E"
+      ],
+      [
+        "F",
+        "p",
+        "G"
+      ],
+      [
+        "G",
+        "q",
+        "F"
+      ]
+    ]
+  },
+  "conversion": "vendor/larpq/Scripts/nt-to-mm; full IRIs retained",
+  "pathrex": {
+    "rpqmatrix": [
+      {
+        "id": "con_any",
+        "pattern": "<A> <p> ?t",
+        "relation_answer_count": 2,
+        "status": "ok",
+        "result_count": 2
+      },
+      {
+        "id": "diamond",
+        "pattern": "<A> <p>/<p> ?t",
+        "relation_answer_count": 1,
+        "status": "ok",
+        "result_count": 1
+      },
+      {
+        "id": "repeat_edge",
+        "pattern": "<F> <p>/<q>/<p> ?t",
+        "relation_answer_count": 1,
+        "status": "ok",
+        "result_count": 1
+      },
+      {
+        "id": "zero_length",
+        "pattern": "<E> (<p>)* ?t",
+        "relation_answer_count": 1,
+        "status": "ok",
+        "result_count": 1
+      },
+      {
+        "id": "positive_empty",
+        "pattern": "<E> (<p>)+ ?t",
+        "relation_answer_count": 0,
+        "status": "ok",
+        "result_count": 0
+      },
+      {
+        "id": "optional",
+        "pattern": "<E> (<p>)? ?t",
+        "relation_answer_count": 1,
+        "status": "error",
+        "error": "unsupported path expression: ZeroOrOne (?) is not supported by RPQMatrix"
+      },
+      {
+        "id": "any_con",
+        "pattern": "?s <p> <D>",
+        "relation_answer_count": 2,
+        "status": "ok",
+        "result_count": 1
+      },
+      {
+        "id": "any_any",
+        "pattern": "?s <p> ?t",
+        "relation_answer_count": 5,
+        "status": "ok",
+        "result_count": 4
+      },
+      {
+        "id": "con_con_true",
+        "pattern": "<A> <p>/<p> <D>",
+        "relation_answer_count": 1,
+        "status": "ok",
+        "result_count": 1
+      },
+      {
+        "id": "con_con_false",
+        "pattern": "<A> <p> <D>",
+        "relation_answer_count": 0,
+        "status": "ok",
+        "result_count": 0
+      },
+      {
+        "id": "same_variable",
+        "pattern": "?x <p> ?x",
+        "relation_answer_count": 0,
+        "status": "ok",
+        "result_count": 4
+      },
+      {
+        "id": "inverse",
+        "pattern": "<D> ^<p> ?t",
+        "relation_answer_count": 2,
+        "status": "ok",
+        "result_count": 1
+      },
+      {
+        "id": "inverse_closure",
+        "pattern": "<D> ^(<p>*) ?t",
+        "relation_answer_count": 4,
+        "status": "ok",
+        "result_count": 1
+      },
+      {
+        "id": "inverse_nested",
+        "pattern": "<A> (<p>|^<q>)* ?t",
+        "relation_answer_count": 4,
+        "status": "error",
+        "error": "unsupported path expression: Reverse paths are not supported"
+      },
+      {
+        "id": "missing_label_star",
+        "pattern": "<E> (<missing>)* ?t",
+        "relation_answer_count": 1,
+        "status": "error",
+        "error": "graph error: Label not found: 'http://example.org/missing'"
+      },
+      {
+        "id": "outside_vertex_star",
+        "pattern": "<Outside> (<p>)* ?t",
+        "relation_answer_count": 0,
+        "status": "error",
+        "error": "vertex not found in graph: 'http://example.org/Outside'"
+      }
+    ],
+    "nfarpq": [
+      {
+        "id": "con_any",
+        "pattern": "<A> <p> ?t",
+        "relation_answer_count": 2,
+        "status": "ok",
+        "result_count": 2
+      },
+      {
+        "id": "diamond",
+        "pattern": "<A> <p>/<p> ?t",
+        "relation_answer_count": 1,
+        "status": "ok",
+        "result_count": 1
+      },
+      {
+        "id": "repeat_edge",
+        "pattern": "<F> <p>/<q>/<p> ?t",
+        "relation_answer_count": 1,
+        "status": "ok",
+        "result_count": 1
+      },
+      {
+        "id": "zero_length",
+        "pattern": "<E> (<p>)* ?t",
+        "relation_answer_count": 1,
+        "status": "ok",
+        "result_count": 1
+      },
+      {
+        "id": "positive_empty",
+        "pattern": "<E> (<p>)+ ?t",
+        "relation_answer_count": 0,
+        "status": "ok",
+        "result_count": 0
+      },
+      {
+        "id": "optional",
+        "pattern": "<E> (<p>)? ?t",
+        "relation_answer_count": 1,
+        "status": "ok",
+        "result_count": 1
+      },
+      {
+        "id": "any_con",
+        "pattern": "?s <p> <D>",
+        "relation_answer_count": 2,
+        "status": "ok",
+        "result_count": 1
+      },
+      {
+        "id": "any_any",
+        "pattern": "?s <p> ?t",
+        "relation_answer_count": 5,
+        "status": "ok",
+        "result_count": 4
+      },
+      {
+        "id": "con_con_true",
+        "pattern": "<A> <p>/<p> <D>",
+        "relation_answer_count": 1,
+        "status": "ok",
+        "result_count": 1
+      },
+      {
+        "id": "con_con_false",
+        "pattern": "<A> <p> <D>",
+        "relation_answer_count": 0,
+        "status": "ok",
+        "result_count": 0
+      },
+      {
+        "id": "same_variable",
+        "pattern": "?x <p> ?x",
+        "relation_answer_count": 0,
+        "status": "ok",
+        "result_count": 4
+      },
+      {
+        "id": "inverse",
+        "pattern": "<D> ^<p> ?t",
+        "relation_answer_count": 2,
+        "status": "ok",
+        "result_count": 1
+      },
+      {
+        "id": "inverse_closure",
+        "pattern": "<D> ^(<p>*) ?t",
+        "relation_answer_count": 4,
+        "status": "ok",
+        "result_count": 1
+      },
+      {
+        "id": "inverse_nested",
+        "pattern": "<A> (<p>|^<q>)* ?t",
+        "relation_answer_count": 4,
+        "status": "error",
+        "error": "unsupported path expression: Reverse paths are not supported"
+      },
+      {
+        "id": "missing_label_star",
+        "pattern": "<E> (<missing>)* ?t",
+        "relation_answer_count": 1,
+        "status": "error",
+        "error": "graph error: Label not found: 'http://example.org/missing'"
+      },
+      {
+        "id": "outside_vertex_star",
+        "pattern": "<Outside> (<p>)* ?t",
+        "relation_answer_count": 0,
+        "status": "error",
+        "error": "vertex not found in graph: 'http://example.org/Outside'"
+      }
+    ]
+  },
+  "larpq": {
+    "con_any_p": {
+      "targets": [
+        "B",
+        "C"
+      ],
+      "status": "pass"
+    },
+    "diamond_pp": {
+      "targets": [
+        "D"
+      ],
+      "status": "pass"
+    },
+    "repeated_edge_pqp": {
+      "targets": [
+        "G"
+      ],
+      "status": "pass"
+    },
+    "zero_length_E": {
+      "targets": [
+        "E"
+      ],
+      "status": "pass"
+    },
+    "multi_source_p": {
+      "targets": [
+        "D"
+      ],
+      "status": "pass"
+    },
+    "all_sources_p": {
+      "targets": [
+        "B",
+        "C",
+        "D",
+        "G"
+      ],
+      "status": "pass"
+    },
+    "inverse_label_from_D": {
+      "targets": [
+        "B",
+        "C"
+      ],
+      "status": "pass"
+    },
+    "whole_inverse_from_D": {
+      "targets": [
+        "B",
+        "C"
+      ],
+      "status": "pass"
+    },
+    "whole_inverse_without_state_swap": {
+      "targets": [],
+      "status": "pass"
+    }
+  },
+  "kuzu": {
+    "repeat_edge": {
+      "query": "MATCH (s:Node {name:'F'})-[:p]->()-[:q]->()-[:p]->(t) RETURN DISTINCT t.name",
+      "rows": [
+        [
+          "G"
+        ]
+      ]
+    },
+    "any_con": {
+      "query": "MATCH (s)-[:p]->(t:Node {name:'D'}) RETURN DISTINCT s.name",
+      "rows": [
+        [
+          "B"
+        ],
+        [
+          "C"
+        ]
+      ]
+    },
+    "same_variable": {
+      "query": "MATCH (s)-[:p]->(s) RETURN DISTINCT s.name",
+      "rows": []
+    },
+    "default_depth": {
+      "query": "MATCH (s:Node {id:100})-[:p*1..]->(t) RETURN DISTINCT t.id ORDER BY t.id",
+      "rows": [
+        [
+          101
+        ],
+        [
+          102
+        ],
+        [
+          103
+        ],
+        [
+          104
+        ],
+        [
+          105
+        ],
+        [
+          106
+        ],
+        [
+          107
+        ],
+        [
+          108
+        ],
+        [
+          109
+        ],
+        [
+          110
+        ],
+        [
+          111
+        ],
+        [
+          112
+        ],
+        [
+          113
+        ],
+        [
+          114
+        ],
+        [
+          115
+        ],
+        [
+          116
+        ],
+        [
+          117
+        ],
+        [
+          118
+        ],
+        [
+          119
+        ],
+        [
+          120
+        ],
+        [
+          121
+        ],
+        [
+          122
+        ],
+        [
+          123
+        ],
+        [
+          124
+        ],
+        [
+          125
+        ],
+        [
+          126
+        ],
+        [
+          127
+        ],
+        [
+          128
+        ],
+        [
+          129
+        ],
+        [
+          130
+        ]
+      ]
+    },
+    "explicit_depth31": {
+      "error": "Binder exception: Upper bound of rel  exceeds maximum: 30."
+    },
+    "configured_depth31": {
+      "query": "MATCH (s:Node {id:100})-[:p*1..31]->(t) RETURN DISTINCT t.id ORDER BY t.id",
+      "rows": [
+        [
+          101
+        ],
+        [
+          102
+        ],
+        [
+          103
+        ],
+        [
+          104
+        ],
+        [
+          105
+        ],
+        [
+          106
+        ],
+        [
+          107
+        ],
+        [
+          108
+        ],
+        [
+          109
+        ],
+        [
+          110
+        ],
+        [
+          111
+        ],
+        [
+          112
+        ],
+        [
+          113
+        ],
+        [
+          114
+        ],
+        [
+          115
+        ],
+        [
+          116
+        ],
+        [
+          117
+        ],
+        [
+          118
+        ],
+        [
+          119
+        ],
+        [
+          120
+        ],
+        [
+          121
+        ],
+        [
+          122
+        ],
+        [
+          123
+        ],
+        [
+          124
+        ],
+        [
+          125
+        ],
+        [
+          126
+        ],
+        [
+          127
+        ],
+        [
+          128
+        ],
+        [
+          129
+        ],
+        [
+          130
+        ],
+        [
+          131
+        ]
+      ]
+    }
+  },
+  "upstream_sparql_to_fa_larpq": [
+    {
+      "id": "con_any",
+      "count": 2,
+      "status": "pass"
+    },
+    {
+      "id": "diamond",
+      "count": 1,
+      "status": "pass"
+    },
+    {
+      "id": "repeat_edge",
+      "count": 1,
+      "status": "pass"
+    },
+    {
+      "id": "zero_length",
+      "count": 1,
+      "status": "pass"
+    },
+    {
+      "id": "positive_empty",
+      "count": 0,
+      "status": "pass"
+    },
+    {
+      "id": "optional",
+      "count": 1,
+      "status": "pass"
+    }
+  ],
+  "jena": {
+    "diamond": {
+      "actual": 1,
+      "graph_relation_count": 1
+    },
+    "repeat_edge": {
+      "actual": 1,
+      "graph_relation_count": 1
+    },
+    "any_con": {
+      "actual": 2,
+      "graph_relation_count": 2
+    },
+    "any_any": {
+      "actual": 5,
+      "graph_relation_count": 5
+    },
+    "same_variable": {
+      "actual": 0,
+      "graph_relation_count": 0
+    },
+    "missing_label_star": {
+      "actual": 1,
+      "graph_relation_count": 1
+    },
+    "outside_vertex_star": {
+      "actual": 1,
+      "graph_relation_count": 0
+    }
+  }
+}
