@@ -1,5 +1,9 @@
 # Конкуренты RPQ: форматы, конвертация и запуск
 
+> Актуальные команды запуска находятся в [гайде раннера](../Scripts/runners/README.md),
+> а подготовка входов — в [гайде конвертеров](../Scripts/converters/README.md).
+> Ниже сохранены команды исторической серии.
+
 Актуальный набор — **15 систем**. Общий простой набор на `rpqbench_250k`
 проверяется **2026-10-18**. Команды выполняются из корня `RPQ_bench`.
 Это функциональная проверка; общий performance runner пока поддерживает только
@@ -201,7 +205,7 @@ Native build commands, ручные imports и client calls каждого се�
 ## Другие датасеты: конвертация N3 / NT / Turtle
 
 Для нового графа не применять RPQBench localhost filter или сокращение
-исходных namespaces без проверки. Общий [prepare_rdf.py](../Scripts/competitors/prepare_rdf.py)
+исходных namespaces без проверки. Общий [prepare_rdf.py](../Scripts/archive/competitors/prepare_rdf.py)
 разбирает RDFLib формат, различает полные IRI/blank nodes, назначает безопасные
 имена `vN`, `relN` и сохраняет mapping. Выбираются resource-to-resource edges;
 triples с literal object исключаются. Это переименование без коллизий.

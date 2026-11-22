@@ -1,5 +1,9 @@
 # LARPQ / LAGraph 2-rpq
 
+> Актуальные команды запуска находятся в [гайде раннера](../../Scripts/runners/README.md),
+> а подготовка входов — в [гайде конвертеров](../../Scripts/converters/README.md).
+> Ниже сохранены команды исторической серии.
+
 Дата проверки: 2026-10-11. Команды — из корня RPQ_bench. Перед запуском выполнить
 [общую подготовку](README.md#подготовка-окружения-и-запуск) (окружение/данные).
 Фактическая версия и результат находятся в [отчёте](smoke-results.md);
@@ -9,7 +13,7 @@ Docker digest / JAR checksum / source SHA — в [runtime-lock.json](runtime-loc
 
 Это C library API, штатного SPARQL command-line executable в подключённой ветке
 нет. Сборка библиотеки и нашего минимального
-[larpq_smoke.c](../../Scripts/competitors/larpq_smoke.c) описаны в
+[larpq_smoke.c](../../Scripts/archive/competitors/larpq_smoke.c) описаны в
 [build-native.md](build-native.md#larpq).
 
 ```bash

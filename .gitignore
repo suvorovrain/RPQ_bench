@@ -13,3 +13,8 @@ __pycache__/
 /Queries/*/
 
 /t.txt
+
+# Machine-local archives, runtime dependencies and the legacy dataset alias.
+**/archive/
+/.rpq-runtime/
+/Datasets/rpqbench_250k

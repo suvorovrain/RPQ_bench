@@ -1,0 +1,27 @@
+{
+  "defaults": {
+    "runs": 4,
+    "warmups": 1,
+    "threads": "all",
+    "timeout_s": 600,
+    "docker_memory": null,
+    "runtime": ".rpq-runtime"
+  },
+  "datasets": {
+    "rpq_250k": {
+      "prepared": "Datasets/rpq_250k/prepared",
+      "graph": "Datasets/rpq_250k/pathrex",
+      "query_set": "basic4",
+      "engines": ["pathrex", "larpq", "rpqmatrix", "rpqmatrixGB", "ring", "duckdb", "kuzu", "jena", "postgres", "millenniumdb", "blazegraph", "virtuoso", "neo4j", "memgraph", "falkordb"]
+    },
+    "wiki": {
+      "prepared": "Datasets/wiki/prepared",
+      "graph": "Datasets/wiki/pathrex",
+      "query_set": "benchmark",
+      "engines": ["pathrex", "rpqmatrixGB"]
+    }
+  },
+  "competitors": {
+    "pathrex": {"optimizer": "pang-hybrid"}
+  }
+}
