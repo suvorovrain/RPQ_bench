@@ -1,19 +1,15 @@
-# Datasets
+# Датасеты
 
-The full `rpqbench` dataset contains 150,144,666 triples, 57,761,174 vertices,
-and 9 predicates. Dataset files are machine-local benchmark inputs and are not
-stored in Git.
+| Каталог | Содержимое |
+| --- | --- |
+| `rpq_250k/` | Исходный `rpqbench_250k.n3`, MatrixMarket в `pathrex/` и общие форматы в `prepared/`. |
+| `wiki/` | Исходный `wikidata.nt` и подготовленные входы на сервере. |
 
-## Competitor inputs
+Малый стенд использует старую ресурсную проекцию RPQBench 250k. В ней 24 225
+вершин, 9 меток и 61 017 уникальных рёбер. Для воспроизведения старых чисел
+используйте тот же исходный N3. Новый запуск генератора может дать другой граф.
 
-The [competitor guide](../Databases/README.md) documents the complete N3/NT
-conversion and all 15 engine formats. Existing `rpqbench_250k` uses the legacy
-resource-edge projection: 24,225 vertices, 9 labels, 61,017 unique edges.
-`prepare_250k.py --bootstrap-mm` prepares it from the source N3 when matrices
-are missing; it refuses to overwrite an existing `prepared/`.
-
-For a new dataset, `Scripts/competitors/prepare_rdf.py SOURCE OUTPUT --format nt`
-(or `--format n3` / `turtle`) produces RDF, CSV, MatrixMarket and native matrix
-layouts with collision-free names and a shared ID mapping. It retains resource
-edges and excludes literal-object triples; its IDs differ from legacy 250k.
-The generated graph inputs, dictionaries and manifest must be kept together.
+Данные и подготовленные представления хранятся локально. Существующий
+`rpqbench_250k` в этой рабочей копии оставлен как символическая ссылка для
+старых абсолютных ссылок. Активный конфиг обращается к `rpq_250k`.
+[Команды получения и подготовки](../Scripts/converters/README.md).

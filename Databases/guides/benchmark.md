@@ -1,5 +1,9 @@
 # 15 конкурентов × Basic4 × 100 повторов
 
+> Актуальные команды запуска находятся в [гайде раннера](../../Scripts/runners/README.md),
+> а подготовка входов — в [гайде конвертеров](../../Scripts/converters/README.md).
+> Ниже сохранены команды исторической серии.
+
 Дата: 2026-10-18. Датасет — существующая resource-edge проекция
 `rpqbench_250k`: 24 225 vertices, 9 labels, 61 017 unique edges.
 Все 15 систем завершили четыре общих запроса с правильными ответами.
@@ -25,19 +29,19 @@ index building, process/JVM startup и проверка правильности
 ## Артефакты
 
 Все файлы созданы локально в
-[`Results/competitors_bench_250k/2026-10-18-basic4-100`](../../Results/competitors_bench_250k/2026-10-18-basic4-100/).
+[`Results/competitors_bench_250k/2026-10-18-basic4-100`](../../Results/archive/competitors_bench_250k/2026-10-18-basic4-100/).
 Большие/машинные результаты игнорируются Git; воспроизводятся командами ниже.
 
-- [Самодостаточный HTML отчёт](../../Results/competitors_bench_250k/2026-10-18-basic4-100/report/report.html)
+- [Самодостаточный HTML отчёт](../../Results/archive/competitors_bench_250k/2026-10-18-basic4-100/report/report.html)
   с графиками, цветной таблицей и методикой.
-- [Гистограмма / bar charts PNG](../../Results/competitors_bench_250k/2026-10-18-basic4-100/report/histogram.png)
-  и [SVG](../../Results/competitors_bench_250k/2026-10-18-basic4-100/report/histogram.svg).
-- [Цветная таблица PNG](../../Results/competitors_bench_250k/2026-10-18-basic4-100/report/table.png)
-  и [Excel](../../Results/competitors_bench_250k/2026-10-18-basic4-100/report/table.xlsx).
-- [Распределения всех samples](../../Results/competitors_bench_250k/2026-10-18-basic4-100/report/distributions.png).
-- [Статистика CSV](../../Results/competitors_bench_250k/2026-10-18-basic4-100/report/summary.csv),
-  [все 6 000 samples CSV](../../Results/competitors_bench_250k/2026-10-18-basic4-100/report/samples.csv)
-  и [summary JSON](../../Results/competitors_bench_250k/2026-10-18-basic4-100/report/summary.json).
+- [Гистограмма / bar charts PNG](../../Results/archive/competitors_bench_250k/2026-10-18-basic4-100/report/histogram.png)
+  и [SVG](../../Results/archive/competitors_bench_250k/2026-10-18-basic4-100/report/histogram.svg).
+- [Цветная таблица PNG](../../Results/archive/competitors_bench_250k/2026-10-18-basic4-100/report/table.png)
+  и [Excel](../../Results/archive/competitors_bench_250k/2026-10-18-basic4-100/report/table.xlsx).
+- [Распределения всех samples](../../Results/archive/competitors_bench_250k/2026-10-18-basic4-100/report/distributions.png).
+- [Статистика CSV](../../Results/archive/competitors_bench_250k/2026-10-18-basic4-100/report/summary.csv),
+  [все 6 000 samples CSV](../../Results/archive/competitors_bench_250k/2026-10-18-basic4-100/report/samples.csv)
+  и [summary JSON](../../Results/archive/competitors_bench_250k/2026-10-18-basic4-100/report/summary.json).
 - `metadata.json`, `<engine>.json`, `logs/`: версии, полные команды, per-query
   samples и scopes, hashes executable files, source dataset hash и проверки.
 
@@ -49,6 +53,9 @@ index building, process/JVM startup и проверка правильности
 Bar charts используют log scale: разница между native и server scopes велика.
 
 ## Границы таймеров и ограничения сравнения
+
+Таблица ниже описывает исторический smoke-прогон. Метрики действующих
+раннеров приведены в [Scripts/runners/README.md](../../Scripts/runners/README.md#что-измеряет-каждый-раннер).
 
 Это измерения реально используемых интерфейсов, а не единый kernel-only ranking.
 Тип границы подписан на графике и присутствует в каждой строке CSV.
@@ -112,10 +119,10 @@ Output должен находиться внутри repository root (Java Dock
 включить `pathrex`. По умолчанию включены все 15 и только optimizer pang-hybrid.
 
 Скрипты:
-[benchmark_all.py](../../Scripts/competitors/benchmark_all.py),
-[plot_benchmarks.py](../../Scripts/competitors/plot_benchmarks.py),
-[JenaBench.java](../../Scripts/competitors/JenaBench.java),
-[larpq_smoke.c](../../Scripts/competitors/larpq_smoke.c).
+[benchmark_all.py](../../Scripts/archive/competitors/benchmark_all.py),
+[plot_benchmarks.py](../../Scripts/archive/competitors/plot_benchmarks.py),
+[JenaBench.java](../../Scripts/archive/competitors/JenaBench.java),
+[larpq_smoke.c](../../Scripts/archive/competitors/larpq_smoke.c).
 Все созданные benchmark containers останавливаются и удаляются после серии;
 images/volumes, database directories и полные logs сохраняются.
 

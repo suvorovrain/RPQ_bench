@@ -1,5 +1,9 @@
 # Подробные гайды запуска на rpqbench_250k
 
+> Актуальные команды запуска находятся в [гайде раннера](../../Scripts/runners/README.md),
+> а подготовка входов — в [гайде конвертеров](../../Scripts/converters/README.md).
+> Ниже сохранены команды исторической серии.
+
 Общий обзор всех 15 систем, статусы подключения, новый Basic4 и полный путь
 N3/NT→форматы находятся в [Databases/README.md](../README.md).
 Этот документ дополняет обзор техническими деталями прежних smoke-наборов.
@@ -8,7 +12,7 @@ N3/NT→форматы находятся в [Databases/README.md](../README.md)
 и фактические результаты запусков. Исходники submodules и бинарные поставки —
 разные версии: Docker digest, JAR checksum и source SHA записаны в
 [runtime-lock.json](runtime-lock.json). Общий benchmark runner пока не расширен;
-[smoke_250k.py](../../Scripts/competitors/smoke_250k.py) — отдельный проверочный
+[smoke_250k.py](../../Scripts/archive/competitors/smoke_250k.py) — отдельный проверочный
 runner с импортом и сравнением ответов, без performance ranking.
 
 ## Навигация
@@ -36,7 +40,7 @@ runner с импортом и сравнением ответов, без perfor
 [Отдельная проверка контракта](contract.md) сопоставляет API/CLI Pathrex и LARPQ
 с остальными системами и фиксирует различия на циклах, bindings и zero-length.
 Подробные логи находятся локально в
-[Results/competitors_250k/logs](../../Results/competitors_250k/logs/).
+[Results/competitors_250k/logs](../../Results/archive/competitors_250k/logs/).
 
 ## Один датасет для всех движков
 
@@ -56,7 +60,7 @@ runner с импортом и сравнением ответов, без perfor
 не перезаписываются. Дубликаты схлопнуты для set reachability; для path/multigraph
 benchmark потребуется отдельный контракт кратности рёбер.
 
-[prepare_250k.py](../../Scripts/competitors/prepare_250k.py) специально рассчитан
+[prepare_250k.py](../../Scripts/archive/competitors/prepare_250k.py) специально рассчитан
 на этот плоский генераторный файл и существующие словари, а не на любой N3.
 Полный файл валидируется RDFLib, проекция сверяется по исходным лексическим
 именам blank nodes. Для произвольного нового датасета сначала нужен общий RDF
@@ -169,7 +173,7 @@ Cypher smoke пропускает q4 как `no_translation`: эквивален
 compound closure ещё не реализован, это не результат runtime-теста поддержки
 произвольного regex. Совпадение остальных пяти не доказывает полный WALK RPQ.
 
-[prepare_workload.py](../../Scripts/competitors/prepare_workload.py) берёт 20
+[prepare_workload.py](../../Scripts/archive/competitors/prepare_workload.py) берёт 20
 [upstream шаблонов](../../vendor/larpq/Datasets/RPQBench/sparql-queries-templates.txt),
 фиксирует bindings и строит epsilon-free DFA, SQL и эталон. Для any-con
 используются обратные переходы автомата и обратный граф. Это демонстрационный
